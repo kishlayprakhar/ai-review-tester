@@ -146,113 +146,88 @@ def list_prs(repo: str, state: str = "open", limit: int = 5):
 
 @app.post("/review")
 def review_pr(request: ReviewRequest):
+    print(f"\n🚀 Running dynamic AI review for {request.repo} PR #{request.pr_number}...")
     try:
-        # Connect to the specified GitHub repository and pull request
-        repo = gh_client.get_repo(request.repo)
-        pr = repo.get_pull(request.pr_number)
+        # 1. Fetch the actual code modifications (git diff patch)
+        diff = get_pr_diff(request.repo, request.pr_number)
 
-      
-        # -----------------------------------------------------------------
-        pr_files = pr.get_files()
-        detected_languages = set()
-        raw_diff_content = ""
-        
-        for file in pr_files:
-            if file.patch:
-                raw_diff_content += f"\nFile: {file.filename}\n{file.patch}\n"
-                
-                # Check extensions dynamically
-                ext = file.filename.split('.')[-1].lower()
-                if ext == 'py': detected_languages.add("Python")
-                elif ext in ['js', 'jsx', 'ts', 'tsx']: detected_languages.add("JavaScript/TypeScript")
-                elif ext in ['c', 'cpp', 'h']: detected_languages.add("C/C++")
-                elif ext == 'java': detected_languages.add("Java")
-                elif ext == 'go': detected_languages.add("Go")
+        if not diff:
+            raise HTTPException(
+                status_code=404,
+                detail=f"PR #{request.pr_number} diff content not found in {request.repo}"
+            )
 
-        languages_context = ", ".join(detected_languages) if detected_languages else "General Source Code"
-        print(f"🌐 Dynamic Language Detection complete. Found: {languages_context}")
+        # 2. Fire the code diff to your dynamic AI model parser
+        structured_review = get_code_review(diff)
 
-        
-        # Extract the latest commit object (Strictly required by GitHub for line-level comments)
-        commits = pr.get_commits()
-        latest_commit = commits[commits.totalCount - 1]
-        
-        # Gather information about changed files
-        pr_files = pr.get_files()
-        
-        # Define mock structured data matching your frontend parser expectations
-        structured_review = {
-            "bugs": [
-                "Potential circular reference detected. Refactor to merge common utility functions.",
-                "Error handler does not catch ConnectionRefusedError. Update exception fallback types."
-            ],
-            "improvements": [
-                {"description": "Replace list comprehension with a generator expression to optimize loop memory usage."},
-                {"description": "Cache responses from the GitHub API using st.cache_data mechanism structures."}
-            ],
-            "security_issues": [
-                "Identified use of a deprecated hashing algorithm SHA1 in database configuration arrays."
-            ],
-            "quality_score": 9,
-            "summary": "Overall changes are well-structured and significantly improve script robustness parameters."
-        }
+        # 3. Pull out the variables for GitHub posting or fallback seamlessly
+        quality_score = structured_review.get("quality_score", 7)
+        summary_text = structured_review.get("summary", "Review processed.")
+        bugs_array = structured_review.get("bugs", [])
+        improvements_array = structured_review.get("improvements", [])
+        security_array = structured_review.get("security_issues", [])
 
-        # -----------------------------------------------------------------
-        # ADVANCED FEATURE 1: Auto-Post Global PR Review Comment
-        # -----------------------------------------------------------------
-        global_markdown_comment = f"""### 🤖 Automated AI Code Review
+        # 4. Connect to GitHub Client for Auto-Posting Features
+        try:
+            repo = gh_client.get_repo(request.repo)
+            pr = repo.get_pull(request.pr_number)
+
+            # Build markdown layout matrices dynamically from actual AI content arrays
+            bugs_md = "\n".join([f"- {b}" for b in bugs_array]) if bugs_array else "- No critical code bugs spotted."
+            sec_md = "\n".join([f"- {s}" for s in security_array]) if security_array else "- No obvious data exposures found."
+            
+            global_markdown_comment = f"""### 🤖 Automated AI Code Review
 | Metric | Status / Value |
 | :--- | :--- |
-| **⭐ Quality Score** | **{structured_review['quality_score']}/10** |
+| **⭐ Quality Score** | **{quality_score}/10** |
 
-#### 🪲 Bugs Identified
-- {structured_review['bugs'][0]}
-- {structured_review['bugs'][1]}
+#### 🪲 Structural Bug Diagnostics
+{bugs_md}
 
-#### ⚡ Performance Modifications
-- {structured_review['improvements'][0]['description']}
+#### 🔒 Data Protection & Security
+{sec_md}
 
-#### 🔒 Security Scans
-- {structured_review['security_issues'][0]}
+*Review generated dynamically using live cloud access processing pipelines.*"""
 
-*Review generated successfully via Full-Stack Application Integration Pipelines.*"""
-
-        try:
-            # Post the global overview comment to the PR timeline
             pr.create_issue_comment(global_markdown_comment)
-            print("✅ Successfully posted global overview review comment to GitHub!")
-        except Exception as github_err:
-            print(f"⚠️ Global comment posting bypassed: {str(github_err)} (Check token write permissions)")
-
-        # -----------------------------------------------------------------
-        # ADVANCED FEATURE 2: Line-Level Diff Target Comments Pinning
-        # -----------------------------------------------------------------
-        # Iterate through the files modified in the PR to find a place to pin comments
-        for file in pr_files:
-            # If the PR contains any Python files, let's pin an actionable issue onto the diff patch
-            if file.filename.endswith(".py") and file.patch:
-                try:
-                    # We look at line position 1 of the file's modifications diff patch
+            print("✅ Successfully posted live dynamic review overview comment to GitHub!")
+            
+            # Optional: Attempt line-level suggestions if patches exist
+            commits = pr.get_commits()
+            latest_commit = commits[commits.totalCount - 1]
+            for file in pr.get_files():
+                if file.filename.endswith(".py") and file.patch:
                     pr.create_review_comment(
-                        body="💡 **AI Inline Suggestion:** Verify this code layer is decoupled safely to maximize microservice scaling speeds.",
+                        body="💡 **AI Inline Suggestion:** Review execution layout optimization paths for this specific file block.",
                         commit=latest_commit,
                         path=file.filename,
-                        position=1 # Pinned dynamically at line position 1 inside the git patch sequence block
+                        position=1
                     )
-                    print(f"📌 Inline code suggestion successfully pinned to file: {file.filename}")
-                    break # Stop after pinning one code comment for validation testing
-                except Exception as line_err:
-                    print(f"⚠️ Inline comment bypassed on {file.filename}: {str(line_err)}")
+                    break
+        except Exception as github_err:
+            print(f"⚠️ GitHub automated timeline integration bypassed: {str(github_err)}")
 
-        # Return structured response payload straight to your Streamlit user interface grid elements
+        # 5. Save the real review to history database log files
+        try:
+            save_review(
+                repo=request.repo,
+                pr_number=request.pr_number,
+                pr_title=getattr(pr, 'title', f"PR #{request.pr_number}"),
+                pr_author=getattr(getattr(pr, 'user', None), 'login', 'Unknown'),
+                pr_url=f"https://github.com/{request.repo}/pull/{request.pr_number}",
+                review=structured_review
+            )
+        except Exception as db_err:
+            print(f"⚠️ History tracking database pass bypassed: {str(db_err)}")
+
+        # 6. Return dynamic AI payload directly back to your Streamlit user interface
         return {
             "status": "success",
             "review": structured_review
         }
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Advanced Features Execution Failure: {str(e)}")
-
+        raise HTTPException(status_code=500, detail=f"AI Pipeline Engine Error: {str(e)}")
 
 # ── Endpoint 4 — Get Review History ──────────────────────────────────────────
 
