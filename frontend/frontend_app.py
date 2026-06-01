@@ -412,6 +412,8 @@ html, body,
     color: var(--accent-blue);
     padding: 1px 6px;
     border-radius: 4px;
+    word-break: break-word;
+    white-space: normal;
 }
 .finding-meta {
     margin-top: 8px;
