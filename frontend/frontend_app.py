@@ -744,7 +744,7 @@ div[data-testid="stSpinner"] p {
 # CONSTANTS & HELPERS
 # ══════════════════════════════════════════════════════
 
-API_URL = "http://localhost:8000"
+API_URL = " https://ai-reviewer-backend-sz5k.onrender.com"
 
 
 def fetch_prs(repo):
