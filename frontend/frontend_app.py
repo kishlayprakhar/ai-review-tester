@@ -819,13 +819,11 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     st.markdown('<div class="sb-label">Repository</div>', unsafe_allow_html=True)
-    repo_url = st.text_input("r", value="psf/requests", label_visibility="collapsed",
-                              placeholder="username/repo")
-
+    repo_url = st.text_input("r", value="", label_visibility="collapsed", placeholder="username/repo")
+     
     st.markdown('<div class="sb-label" style="margin-top:14px;">Pull Request</div>',
                 unsafe_allow_html=True)
-    pr_number = st.number_input("p", min_value=1, step=1, value=7471,
-                                 label_visibility="collapsed")
+    pr_number = st.number_input("p", min_value=1, step=1, value=1, label_visibility="collapsed")
 
     if repo_url:
         st.markdown('<div class="sb-label" style="margin-top:14px;">Select PR</div>',
