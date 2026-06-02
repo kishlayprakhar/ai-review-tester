@@ -179,9 +179,133 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    padding: 14px 2
-""", unsafe_allow_html=True)
+    padding: 14px 20px; /* Compact padding */
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.01);
+}
+.ctx-repo { font-family: var(--ff-mono); font-weight: 600; color: var(--text-main); font-size: 16px; letter-spacing: -0.3px;}
+.ctx-pr { font-size: 11.5px; color: var(--text-light); margin-top: 2px; font-family: var(--ff-mono); }
 
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+.tile {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px; /* Tighter tiles */
+    box-shadow: 0 4px 12px rgba(15,23,42,0.01);
+}
+.tile-label { font-family: var(--ff-mono); font-size: 10px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 6px; }
+.tile-val { font-family: var(--ff-display); font-size: 38px; font-style: italic; line-height: 1; color: var(--text-main); }
+.tv-score { color: var(--blue); }
+.tv-bugs { color: var(--green); }
+.tv-perf { color: var(--amber); }
+.tv-sec { color: var(--rose); }
+
+.summary-box {
+    background: var(--bg-surface); 
+    border: 1px solid var(--border); 
+    padding: 18px 24px; 
+    border-radius: var(--radius-md); 
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.01);
+}
+.summary-box h4 { margin: 0 0 6px; font-family: var(--ff-display); font-size: 19px; font-style: italic; color: var(--text-main); }
+.summary-box p { color: var(--text-muted); font-size: 14px; margin: 0; line-height: 1.55; }
+
+/* ── ⚡ FIXED HEIGHT SCROLLABLE CARD MATRIX ── */
+.findings-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    height: 310px; /* ⚡ Set a strict fixed height constraint */
+    overflow-y: auto; /* ⚡ Turn on independent vertical scrolling inside the box */
+    box-shadow: 0 4px 12px rgba(15,23,42,0.01);
+}
+.findings-card h4 { 
+    font-family: var(--ff-display); 
+    font-style: italic; 
+    font-size: 20px; 
+    margin: 0 0 14px 0; 
+    color: var(--text-main); 
+    border-bottom: 1px solid var(--border); 
+    padding-bottom: 8px;
+    position: sticky; /* Keep headers static at top of scrolling area */
+    top: 0;
+    background: var(--bg-surface);
+    z-index: 5;
+}
+
+.finding {
+    background: var(--bg-base); 
+    border: 1px solid var(--border);
+    border-radius: 8px; 
+    padding: 12px; 
+    margin-bottom: 8px;
+    display: flex; 
+    gap: 12px; 
+    align-items: flex-start; 
+}
+.f-icon { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;}
+.fi-bug  { background: var(--green-dim); color: var(--green); }
+.fi-perf { background: var(--amber-dim); color: var(--amber); }
+.fi-sec  { background: var(--rose-dim); color: var(--rose); }
+.f-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.f-desc code { font-family: var(--ff-mono); background: var(--bg-surface); color: var(--text-main); padding: 2px 6px; border-radius: 4px; font-size: 11.5px; word-break: break-word; white-space: normal;}
+.f-empty { background: transparent; border: 1px dashed var(--border); padding: 24px; text-align: center; border-radius: 8px; color: var(--text-light); font-family: var(--ff-mono); font-size: 11.5px;}
+
+.score-card {
+    background: var(--bg-surface); 
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md); 
+    padding: 30px 20px;
+    height: 310px; /* Match the findings card height */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.01);
+}
+.score-ring {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: conic-gradient(var(--blue) calc(var(--pct) * 1%), var(--border) 0%);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+}
+.score-inner { width: 96px; height: 96px; border-radius: 50%; background: var(--bg-surface); display: flex; align-items: center; justify-content: center; }
+.score-num { font-family: var(--ff-display); font-size: 48px; font-style: italic; color: var(--text-main); line-height: 1; }
+.score-verdict { font-family: var(--ff-mono); font-size: 10px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; font-weight: 600; letter-spacing: 1px; }
+.sv-excellent { background: var(--green-dim);  color: var(--green); }
+.sv-good      { background: var(--blue-dim);   color: var(--blue); }
+.sv-average   { background: var(--amber-dim);  color: var(--amber); }
+.sv-poor      { background: var(--rose-dim);   color: var(--rose); }
+
+/* Buttons and Form inputs overrides */
+.stButton > button {
+    background: var(--accent) !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 28px !important;
+    border-radius: 30px !important;
+    font-family: var(--ff-sans) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    transition: all 0.15s ease !important;
+}
+.stButton > button:hover { background: var(--accent-hover) !important; transform: translateY(-1px) !important; box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; }
+.stTextInput input, .stNumberInput input {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    font-family: var(--ff-mono) !important;
+    color: var(--text-main) !important;
+    font-size: 13px !important;
+}
+</style>
+""", unsafe_allow_html=True)
 # ══════════════════════════════════════════════════════
 # NETWORK RUNTIME WRAPPERS
 # ══════════════════════════════════════════════════════
