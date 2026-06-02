@@ -202,11 +202,27 @@ if st.session_state.page == 'landing':
     
     c1, c2, c3 = st.columns([1.2, 1, 1.2])
     with c2:
-        st.markdown("<div style='margin-top: -30px; text-align: center;'>", unsafe_allow_html=True)
+        st.markdown("""
+            <div style="background: #FFFFFF !important;
+                        border: 1px solid #E2E8F0 !important;
+                        border-radius: 16px !important;
+                        padding: 32px 40px !important;
+                        text-align: center !important;
+                        margin-top: -10px !important;
+                        margin-bottom: 20px !important;
+                        box-shadow: 0 10px 30px -15px rgba(15, 23, 42, 0.08) !important;">
+        """, unsafe_allow_html=True)
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
             st.rerun()
-        st.markdown("<p style='font-size:12px; color:#64748B; margin-top:14px;'>      No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
+        st.markdown("<p>style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                          font-size: 13px !important; 
+                          color: #64748B !important; 
+                          margin: 16px 0 0 0 !important; 
+                          text-align: center !important;
+                          font-weight: 400 !important;
+                          letter-spacing: -0.1px !important;">
+                    No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
 
     st.markdown("<div style='margin-top: 150px; padding: 0 60px;'>", unsafe_allow_html=True)
     
