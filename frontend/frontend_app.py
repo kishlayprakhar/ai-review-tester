@@ -217,13 +217,17 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
 
 /* ── ⚡ FIXED HEIGHT SCROLLABLE CARD MATRIX ── */
 .findings-card {
+   font-family: var(--ff-display); 
+    font-style: italic; 
+    font-size: 22px; 
+    margin: 0 0 16px 0; 
+    color: var(--text-main); 
+    border-bottom: 1px solid var(--border); 
+    padding-bottom: 10px;
+    position: sticky;
+    top: 0;
     background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 20px;
-    height: 310px; /* ⚡ Set a strict fixed height constraint */
-    overflow-y: auto; /* ⚡ Turn on independent vertical scrolling inside the box */
-    box-shadow: 0 4px 12px rgba(15,23,42,0.01);
+    z-index: 5;
 }
 .findings-card h4 { 
     font-family: var(--ff-display); 
@@ -240,16 +244,37 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
 }
 
 .finding {
-    background: var(--bg-base); 
+  background: var(--bg-base); 
     border: 1px solid var(--border);
     border-radius: 8px; 
     padding: 12px; 
     margin-bottom: 8px;
     display: flex; 
     gap: 12px; 
-    align-items: flex-start; 
+    align-items: flex-start;
+    align-self: stretch; /* Lock horizontal stretch width to parent boundaries */
 }
-.f-icon { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;}
+
+.f-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+}
+
+
+.f-icon { 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 6px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 14px; 
+    flex-shrink: 0;
+}
+
+
 .fi-bug  { background: var(--green-dim); color: var(--green); }
 .fi-perf { background: var(--amber-dim); color: var(--amber); }
 .fi-sec  { background: var(--rose-dim); color: var(--rose); }
@@ -327,12 +352,18 @@ def score_info(s):
     return            "NEEDS WORK", "sv-poor"
 
 def findings_html(icon, cls, items, kind):
-    if not items: return f'<div class="f-empty">◈ &nbsp; No {kind}s detected in this pull request.</div>'
+    if not items: 
+        return f'<div class="f-empty">◈ &nbsp; No {kind}s detected in this pull request.</div>'
     out = ""
     for it in items:
         desc = it.get("description", "") if isinstance(it, dict) else str(it)
-        out += f"""<div class="finding"><div class="f-icon {cls}">{icon}</div>
-                   <div class="f-desc">{desc}</div></div>"""
+        out += f"""
+        <div class="finding">
+            <div class="f-icon {cls}">{icon}</div>
+            <div class="f-content">
+                <div class="f-desc">{desc}</div>
+            </div>
+        </div>"""
     return out
 
 def render_navbar():
