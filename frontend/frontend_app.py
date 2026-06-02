@@ -345,7 +345,7 @@ def findings_html(icon, cls, items, kind):
 if st.session_state.page == 'landing':
      st.markdown('<div class="bg-canvas"></div>', unsafe_allow_html=True)
     
-
+    # ── NATIVE LINK NAVIGATION BAR ──
     nav_cols = st.columns([2.5, 1, 1.2, 1, 1.2, 2.5, 1.1])
     
     with nav_cols[0]:
