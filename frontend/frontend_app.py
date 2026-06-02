@@ -209,7 +209,7 @@ if st.session_state.page == 'landing':
     with c2:
         st.markdown("""
            <style>
-            .premium-pill-cta .stButton > button {
+            html body div[data-testid="stAppViewContainer"] .premium-pill-cta .stButton > button {
                 background-color: #FFFFFF !important;
                 background: #FFFFFF !important;
                 color: #0F172A !important;
@@ -217,25 +217,26 @@ if st.session_state.page == 'landing':
                 font-size: 15px !important;
                 font-weight: 600 !important;
                 border: 1px solid #E2E8F0 !important;
-                border-radius: 50px !important; /* Perfect capsule pill geometry */
-                padding: 12px 32px !important;
+                border-radius: 40px !important; /* Perfect sleek pill geometry */
+                padding: 14px 32px !important;
                 width: 100% !important;
                 display: block !important;
-                box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+                box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06) !important;
                 height: auto !important;
                 transform: none !important;
+                visibility: visible !important;
                 transition: all 0.2s ease !important;
             }
             
-            .premium-pill-cta .stButton > button:hover {
+            html body div[data-testid="stAppViewContainer"] .premium-pill-cta .stButton > button:hover {
                 background-color: #F8FAFC !important;
                 border-color: #CBD5E1 !important;
                 color: #0F172A !important;
-                box-shadow: 0 6px 20px rgba(15, 23, 42, 0.09) !important;
+                box-shadow: 0 6px 20px rgba(15, 23, 42, 0.1) !important;
+                transform: translateY(-1px) !important;
             }
             </style>
             <div class="premium-pill-cta">
-            </style>
         """, unsafe_allow_html=True)
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
