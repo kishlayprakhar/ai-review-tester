@@ -206,11 +206,25 @@ if st.session_state.page == 'landing':
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
             st.rerun()
-        st.markdown("<p style='font-size:12px; color:#64748B; margin-top:14px;'>No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:12px; color:#64748B; margin-top:14px;'>      No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
 
     st.markdown("<div style='margin-top: 150px; padding: 0 60px;'>", unsafe_allow_html=True)
     
     # Features Section
+
+    st.markdown("""
+        <div id="features" class="section-anchor">
+            <h2>Features</h2>
+            <p>
+                • <b>Deep Bug Detection:</b> Locates complex logical fallacies and functional math bugs instantly.<br>
+                • <b>Performance Validation:</b> Recommends code validation changes to keep your algorithms hyper-fast.<br>
+                • <b>Zero-Trust Security:</b> Scans dependencies and checks for exposed access tokens or dangerous parameters.
+            </p>
+        </div>
+        <div style="height: 100px;"></div>
+    """, unsafe_allow_html=True)
+    
+    # 2. How it Works Section (Target pixel: ~760)
     st.markdown("""
         <div id="how-it-works" class="section-anchor">
             <h2>How it Works</h2>
