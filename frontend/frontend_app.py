@@ -71,6 +71,22 @@ st.markdown("""
     --shadow:        0 10px 40px -10px rgba(0,0,0,0.05);
 }
 
+div[data-testid="stHorizontalBlock"] .stButton > button {
+    background: transparent !important;
+    color: var(--text-muted) !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    transition: color 0.15s ease !important;
+}
+
+div[data-testid="stHorizontalBlock"] .stButton > button:hover {
+    color: var(--text-main) !important;
+    background: transparent !important;
+
 /* Framework Clean Up Overrides */
 html, body, [data-testid="stAppViewContainer"], .main .block-container {
     background-color: var(--bg-base) !important;
@@ -318,22 +334,7 @@ def findings_html(icon, cls, items, kind):
                    <div class="f-body"><div class="f-desc">{desc}</div></div></div>"""
     return out
 
-def render_navbar():
-    st.markdown("""
-        <div class="navbar">
-            <div class="nav-brand"><span class="nav-brand-icon">◈</span> CodeSense</div>
-            <div class="nav-links">
-               <span role="button" style="cursor:pointer;" onclick="window.parent.document.getElementById('features').scrollIntoView({behavior: 'smooth'});">Features</span>
-                <span role="button" style="cursor:pointer;" onclick="window.parent.document.getElementById('how-it-works').scrollIntoView({behavior: 'smooth'});">How it Works</span>
-                <span role="button" style="cursor:pointer;" onclick="window.parent.document.getElementById('pricing').scrollIntoView({behavior: 'smooth'});">Pricing</span>
-                <span role="button" style="cursor:pointer;" onclick="window.parent.document.getElementById('changelog').scrollIntoView({behavior: 'smooth'});">Changelog</span>
-            </div>
-            <div class="nav-actions">
-                <span style="cursor:pointer; color:var(--text-muted);">Log in</span>
-                <span class="btn-solid" style="cursor:pointer;">Sign up free</span>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
+
 
 
 # ══════════════════════════════════════════════════════
@@ -342,7 +343,36 @@ def render_navbar():
 
 # PAGE 1: REFINED LANDING
 if st.session_state.page == 'landing':
-    render_navbar()
+     st.markdown('<div class="bg-canvas"></div>', unsafe_allow_html=True)
+    
+
+    nav_cols = st.columns([2.5, 1, 1.2, 1, 1.2, 2.5, 1.1])
+    
+    with nav_cols[0]:
+        st.markdown('<div class="nav-brand" style="margin-top:5px;"><span class="nav-brand-icon">◈</span> CodeSentry</div>', unsafe_allow_html=True)
+    
+    with nav_cols[1]:
+        if st.button("Features", key="nav_feat"):
+            st.markdown("<script>window.scrollTo({top: 400, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            
+    with nav_cols[2]:
+        if st.button("How it Works", key="nav_how"):
+            st.markdown("<script>window.scrollTo({top: 650, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            
+    with nav_cols[3]:
+        if st.button("Pricing", key="nav_price"):
+            st.markdown("<script>window.scrollTo({top: 900, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            
+    with nav_cols[4]:
+        if st.button("Changelog", key="nav_change"):
+            st.markdown("<script>window.scrollTo({top: 1150, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            
+    with nav_cols[5]:
+        st.markdown('<div style="text-align:right; margin-top:5px; font-size:14px; font-weight:500; color:var(--text-muted); cursor:pointer;">Log in</div>', unsafe_allow_html=True)
+        
+    with nav_cols[6]:
+        st.markdown('<div class="btn-solid" style="text-align:center; font-size:14px; font-weight:500; cursor:pointer;">Sign up</div>', unsafe_allow_html=True)
+    # ══════════════════════════════════════════════════════
     st.markdown("""
         <div class="hero-container">
             <div class="hero-title">Your code, reviewed.<br><i>Instantly.</i></div>
