@@ -37,6 +37,7 @@ def go_to_landing():
 # ══════════════════════════════════════════════════════
 st.markdown("""
 <style>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap');
 
 :root {
@@ -68,16 +69,17 @@ st.markdown("""
     --radius-lg:     24px;
 }
 
-/* Framework Clean Up Overrides */
+/* ⚡ FIXED: Absolute structural reset to eliminate the top gap */
 html, body, [data-testid="stAppViewContainer"], .main .block-container {
     background-color: var(--bg-base) !important;
     color: var(--text-main) !important;
     font-family: var(--ff-sans) !important;
 }
-/* Fixed: Removed massive padding and vh gaps to pull the page completely up */
-.main .block-container { padding: 0px !important; max-width: 100% !important; margin: 0 !important; }
-[data-testid="stSidebar"], header, footer { display: none !important; }
-[data-testid="stHeader"] { background: transparent !important; height: 0px !important; display: none !important; }
+.main .block-container { padding: 30px 0px 0px 0px !important; max-width: 100% !important; margin: 0 !important; }
+[data-testid="stSidebar"], footer { display: none !important; }
+
+/* ⚡ FIXED: Explicitly collapse empty framework header padding placeholders */
+[data-testid="stHeader"], header { display: none !important; height: 0px !important; padding: 0 !important; }
 
 /* ── NAV ARCHITECTURE ── */
 .navbar {
@@ -169,10 +171,9 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
 .input-card h2 { font-family: var(--ff-display); font-size: 36px; font-style: italic; margin-bottom: 12px; color: var(--text-main); }
 .input-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 0; }
 
-/* ── NEW ATTRACTIVE RESULTS CONTAINER ── */
+/* ── RESULTS CONTAINER ── */
 .results-container { 
-    padding: 40px 60px 80px; 
-    background: var(--bg-base); 
+    padding: 20px 60px 80px; 
 }
 .ctx-bar {
     background: var(--bg-surface);
@@ -214,23 +215,33 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
 .summary-box h4 { margin: 0 0 12px; font-family: var(--ff-display); font-size: 22px; font-style: italic; color: var(--text-main); }
 .summary-box p { color: var(--text-muted); font-size: 15px; margin: 0; line-height: 1.65; }
 
-/* Structured Column Layouts */
+/* ── ⚡ FIXED FINDINGS CARD ARRANGEMENT ── */
 .findings-card {
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 24px;
-    min-height: 380px;
     box-shadow: 0 4px 12px rgba(15,23,42,0.01);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
-.findings-card h4 { font-family: var(--ff-display); font-style: italic; font-size: 22px; margin-bottom: 20px; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 10px;}
+.findings-card h4 { 
+    font-family: var(--ff-display); 
+    font-style: italic; 
+    font-size: 22px; 
+    margin: 0 0 16px 0; 
+    color: var(--text-main); 
+    border-bottom: 1px solid var(--border); 
+    padding-bottom: 10px;
+}
 
 .finding {
     background: var(--bg-base); 
     border: 1px solid var(--border);
     border-radius: 8px; 
     padding: 16px; 
-    margin-bottom: 12px;
+    margin-bottom: 4px;
     display: flex; 
     gap: 14px; 
     align-items: flex-start; 
@@ -289,6 +300,7 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
     font-size: 13px !important;
 }
 div[data-testid="stSpinner"] p { font-family: var(--ff-mono); color: var(--text-muted); }
+</style>
 </style>
 """, unsafe_allow_html=True)
 
