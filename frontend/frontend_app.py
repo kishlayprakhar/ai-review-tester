@@ -37,7 +37,6 @@ def go_to_landing():
 # ══════════════════════════════════════════════════════
 st.markdown("""
 <style>
-<style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap');
 
 :root {
@@ -300,7 +299,6 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
     font-size: 13px !important;
 }
 div[data-testid="stSpinner"] p { font-family: var(--ff-mono); color: var(--text-muted); }
-</style>
 </style>
 """, unsafe_allow_html=True)
 
