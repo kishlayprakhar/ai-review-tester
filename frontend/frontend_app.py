@@ -370,13 +370,12 @@ elif st.session_state.page == 'input':
 
 # PAGE 3: COMPACT SYSTEM METRIC VIEWER
 # PAGE 3: PREMIUM DARK REVIEW INTERFACE
+# PAGE 3: REFINED DARK REVIEW INTERFACE (NO CARD COLORS - FLUID TEXT MATRIX)
 elif st.session_state.page == 'results':
-    # This empty markdown spacing rule keeps the content pushed exactly where it belongs
     st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
     
     c_back, _ = st.columns([1.2, 8.8])
     with c_back:
-        # ⚡ CHANGED: Search word replaced with Back
         if st.button("← Back", use_container_width=True):
             go_to_input()
             st.rerun()
@@ -437,45 +436,43 @@ elif st.session_state.page == 'results':
             </div>
         """, unsafe_allow_html=True)
 
-        # ── ⚡ FIXED CONTENT GRID WITH INLINE BADGE COCOUNTERS ──
+        # ── ⚡ RECONSTRUCTED FLAT COLUMN GRID (Matches image_2e4cdd / Screenshot 025125 exactly) ──
         c1, c2, c3, c4 = st.columns([3, 3, 3, 2.5])
         
         with c1:
-            # Renders: Bugs [X found]
+            # Title Row with flat container execution
             st.markdown(f"""
-                <div class="findings-card">
-                    <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:26px; display:flex; justify-content:space-between; align-items:center;">
-                        Bugs <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:12px;">{len(bugs)} found</span>
-                    </h4>
+                <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:28px; color:var(--text-primary-dark); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
+                    Bugs <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:var(--text-secondary-dark); background:rgba(74,158,255,0.06); padding:3px 10px; border-radius:20px; border:1px solid var(--border-dark);">{len(bugs)} found</span>
+                </h4>
+                <div style="height:260px; overflow-y:auto; padding-right:4px;">
                     {findings_html("🪲", "fi-bug", bugs, "bug")}
                 </div>
             """, unsafe_allow_html=True)
             
         with c2:
-            # Renders: Performance [X suggestions]
             st.markdown(f"""
-                <div class="findings-card">
-                    <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:26px; display:flex; justify-content:space-between; align-items:center;">
-                        Performance <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:12px;">{len(imps)} suggestions</span>
-                    </h4>
+                <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:28px; color:var(--text-primary-dark); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
+                    Performance <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:var(--text-secondary-dark); background:rgba(74,158,255,0.06); padding:3px 10px; border-radius:20px; border:1px solid var(--border-dark);">{len(imps)} suggestions</span>
+                </h4>
+                <div style="height:260px; overflow-y:auto; padding-right:4px;">
                     {findings_html("⚡", "fi-perf", imps, "suggestion")}
                 </div>
             """, unsafe_allow_html=True)
             
         with c3:
-            # Renders: Security [X issues]
             st.markdown(f"""
-                <div class="findings-card">
-                    <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:26px; display:flex; justify-content:space-between; align-items:center;">
-                        Security <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:12px;">{len(secs)} issues</span>
-                    </h4>
+                <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:28px; color:var(--text-primary-dark); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
+                    Security <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:var(--text-secondary-dark); background:rgba(74,158,255,0.06); padding:3px 10px; border-radius:20px; border:1px solid var(--border-dark);">{len(secs)} issues</span>
+                </h4>
+                <div style="height:260px; overflow-y:auto; padding-right:4px;">
                     {findings_html("🔒", "fi-sec", secs, "security issue")}
                 </div>
             """, unsafe_allow_html=True)
             
         with c4:
             st.markdown(f"""
-                <div class="score-card" style="--pct:{pct};">
+                <div class="score-card" style="--pct:{pct}; height:290px; margin-top:10px;">
                     <div class="score-ring">
                         <div class="score-inner">
                             <div class="score-num">{score}</div>
@@ -486,6 +483,5 @@ elif st.session_state.page == 'results':
                 </div>
             """, unsafe_allow_html=True)
 
-    # ⚡ ADDED: Padding space block at the bottom of the webpage container layout
-    st.markdown("<div style='margin-bottom: 60px;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-bottom: 50px;'></div>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
