@@ -434,6 +434,7 @@ elif st.session_state.page == 'results':
         """, unsafe_allow_html=True)
 
 
+        # ── ⚡ FIXED: HIGH-CONTRAST DYNAMIC AI SUMMARY LAYER ──
         if summ:
             st.markdown(f"""
                 <div style="background: #FFFFFF !important; 
@@ -441,27 +442,32 @@ elif st.session_state.page == 'results':
                             padding: 22px 26px; 
                             border-radius: var(--radius-md); 
                             margin-top: 10px;
-                            margin-bottom: 30px;
+                            margin-bottom: 24px;
                             box-shadow: 0 4px 12px rgba(15,23,42,0.015);">
-                    <h4 style="margin: 0 0 12px 0; 
-                               font-family: var(--ff-mono); 
-                               font-size: 11px; 
-                               text-transform: uppercase; 
-                               letter-spacing: 1.5px; 
+                    <h4 style="margin: 0 0 10px 0; 
+                               font-family: var(--ff-mono) !important; 
+                               font-size: 11px !important; 
+                               text-transform: uppercase !important; 
+                               letter-spacing: 1.5px !important; 
                                color: #0F172A !important; 
-                               font-weight: 600;">
+                               font-weight: 700 !important;
+                               display: block !important;
+                               visibility: visible !important;">
                         AI Summary
                     </h4>
                     <p style="color: var(--text-muted) !important; 
-                              font-family: var(--ff-sans); 
-                              font-size: 14.5px; 
-                              margin: 0; 
-                              line-height: 1.65; 
-                              font-style: normal;">
+                              font-family: var(--ff-sans) !important; 
+                              font-size: 14.5px !important; 
+                              margin: 0 !important; 
+                              line-height: 1.65 !important; 
+                              font-style: normal !important;
+                              font-weight: 400 !important;">
                         {summ}
                     </p>
                 </div>
             """, unsafe_allow_html=True)
+
+        st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
   
 
         # ── ⚡ RECONSTRUCTED FLAT COLUMN GRID (Matches image_2e4cdd / Screenshot 025125 exactly) ──
