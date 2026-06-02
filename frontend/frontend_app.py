@@ -103,6 +103,7 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
     text-decoration: none !important;
     transition: color 0.15s ease;
     cursor: pointer !important;
+    user-select: none;
 }
 .nav-links a:hover {
     color: var(--text-main) !important;
@@ -322,10 +323,10 @@ def render_navbar():
         <div class="navbar">
             <div class="nav-brand"><span class="nav-brand-icon">◈</span> CodeSense</div>
             <div class="nav-links">
-               <a href="javascript:void(0);" onclick="window.parent.document.getElementById('features').scrollIntoView({behavior: 'smooth'});">Features</a>
-                <a href="javascript:void(0);" onclick="window.parent.document.getElementById('how-it-works').scrollIntoView({behavior: 'smooth'});">How it Works</a>
-                <a href="javascript:void(0);" onclick="window.parent.document.getElementById('pricing').scrollIntoView({behavior: 'smooth'});">Pricing</a>
-                <a href="javascript:void(0);" onclick="window.parent.document.getElementById('changelog').scrollIntoView({behavior: 'smooth'});">Changelog</a>
+               <span role="button" style="cursor:pointer;" onclick="window.parent.document.getElementById('features').scrollIntoView({behavior: 'smooth'});">Features</span>
+                <span role="button" style="cursor:pointer;" onclick="window.parent.document.getElementById('how-it-works').scrollIntoView({behavior: 'smooth'});">How it Works</span>
+                <span role="button" style="cursor:pointer;" onclick="window.parent.document.getElementById('pricing').scrollIntoView({behavior: 'smooth'});">Pricing</span>
+                <span role="button" style="cursor:pointer;" onclick="window.parent.document.getElementById('changelog').scrollIntoView({behavior: 'smooth'});">Changelog</span>
             </div>
             <div class="nav-actions">
                 <span style="cursor:pointer; color:var(--text-muted);">Log in</span>
