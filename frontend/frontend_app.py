@@ -208,30 +208,33 @@ if st.session_state.page == 'landing':
     c1, c2, c3 = st.columns([1.2, 1, 1.2])
     with c2:
         st.markdown("""
-            <style>
-            /* Target only the button inside this block to prevent breaking other pages */
-            div[data-testid="stColumn"] .stButton > button {
+           <style>
+            .premium-pill-cta .stButton > button {
                 background-color: #FFFFFF !important;
-                color: #334155 !important;
+                background: #FFFFFF !important;
+                color: #0F172A !important;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
                 font-size: 15px !important;
-                font-weight: 700 !important;
+                font-weight: 600 !important;
                 border: 1px solid #E2E8F0 !important;
-                border-radius: 50px !important; /* Forces the perfect capsule pill shape */
-                padding: 14px 28px !important;
+                border-radius: 50px !important; /* Perfect capsule pill geometry */
+                padding: 12px 32px !important;
                 width: 100% !important;
                 display: block !important;
-                box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+                box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+                height: auto !important;
+                transform: none !important;
                 transition: all 0.2s ease !important;
             }
             
-            div[data-testid="stColumn"] .stButton > button:hover {
+            .premium-pill-cta .stButton > button:hover {
                 background-color: #F8FAFC !important;
                 border-color: #CBD5E1 !important;
                 color: #0F172A !important;
-                transform: translateY(-1px) !important;
-                box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08) !important;
+                box-shadow: 0 6px 20px rgba(15, 23, 42, 0.09) !important;
             }
+            </style>
+            <div class="premium-pill-cta">
             </style>
         """, unsafe_allow_html=True)
         if st.button("Connect GitHub Free", use_container_width=True):
