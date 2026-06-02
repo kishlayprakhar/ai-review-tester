@@ -208,21 +208,9 @@ if st.session_state.page == 'landing':
             st.rerun()
         st.markdown("<p style='font-size:12px; color:#64748B; margin-top:14px;'>No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
 
-    st.markdown("<div style='margin-top: 80px; padding: 0 60px;'>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top: 150px; padding: 0 60px;'>", unsafe_allow_html=True)
     
     # Features Section
-    st.markdown("""
-        <div id="features" class="section-anchor">
-            <h2>Features</h2>
-            <p>
-                • <b>Deep Bug Detection:</b> Locates complex logical fallacies and functional math bugs instantly.<br>
-                • <b>Performance Validation:</b> Recommends code validation changes to keep your algorithms hyper-fast.<br>
-                • <b>Zero-Trust Security:</b> Scans dependencies and checks for exposed access tokens or dangerous parameters.
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
-
-    # How it Works Section
     st.markdown("""
         <div id="how-it-works" class="section-anchor">
             <h2>How it Works</h2>
@@ -232,9 +220,10 @@ if st.session_state.page == 'landing':
                 3. Our LLaMA-powered intelligence parses the code delta to yield structured analytics.
             </p>
         </div>
+        <div style="height: 100px;"></div>
     """, unsafe_allow_html=True)
 
-    # Pricing Section
+    # 3. Pricing Section (Target pixel: ~1000)
     st.markdown("""
         <div id="pricing" class="section-anchor">
             <h2>Pricing</h2>
@@ -243,9 +232,10 @@ if st.session_state.page == 'landing':
                 • <b>Startup Tier ($19/mo):</b> Unlimited repo scans with deep historical tracking pipelines.
             </p>
         </div>
+        <div style="height: 100px;"></div>
     """, unsafe_allow_html=True)
 
-    # Changelog Section
+    # 4. Changelog Section (Target pixel: ~1240)
     st.markdown("""
         <div id="changelog" class="section-anchor">
             <h2>Changelog</h2>
@@ -254,9 +244,8 @@ if st.session_state.page == 'landing':
                 • <b>v0.8:</b> Added multi-page routing state trackers and support for Groq LLaMA 3 inference endpoints.
             </p>
         </div>
-        <div style='margin-bottom: 100px;'></div>
+        <div style='margin-bottom: 250px;'></div>
     """, unsafe_allow_html=True)
-    
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ── ⚡ PAGE 2: FIXED HIGHER CONTRAST INPUT CARD SCREEN ──
