@@ -38,121 +38,84 @@ def go_to_landing():
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap');
-
-:root {
-    --bg-base:       #F7F8FA;
-    --bg-surface:    #FFFFFF;
-    --bg-raised:     #FFFFFF;
-    --border:        #E2E8F0;
-    --border-hover:  #CBD5E1;
-    
-    --text-main:     #0F172A;
-    --text-muted:    #475569;
-    --text-light:    #94A3B8;
-    
-    --accent:        #1E293B;
-    --accent-hover:  #334155;
-    
-    --blue:          #3B82F6;
-    --blue-dim:      rgba(59, 130, 246, 0.08);
-    --green:         #10B981;
-    --green-dim:     rgba(16, 185, 129, 0.08);
-    --amber:         #D97706;
-    --amber-dim:     rgba(217, 119, 6, 0.08);
-    --rose:          #E11D48;
-    --rose-dim:      rgba(225, 29, 72, 0.08);
-
-    --ff-display:    'Fraunces', serif;
-    --ff-sans:       'Inter', sans-serif;
-    --ff-mono:       'Fira Code', monospace;
-    
-    --radius-md:     12px;
-    --radius-lg:     24px;
-    --shadow:        0 10px 40px -10px rgba(0,0,0,0.05);
+html, body, 
+[data-testid="stAppViewContainer"], 
+[data-testid="stMain"], 
+.main, 
+.block-container {
+    background-color: #F7F8FA !important;
+    background: #F7F8FA !important;
+    color: #0F172A !important;
+    font-family: 'Inter', sans-serif !important;
 }
 
-/* Global Light Environment Overrides (For Pages 1 & 2) */
-html, body, [data-testid="stAppViewContainer"], .main .block-container {
-    background-color: var(--bg-base-light) !important;
-    color: var(--text-main-light) !important;
-    font-family: var(--ff-sans) !important;
-}
+/* Framework Clean Up Overrides */
 .main .block-container { padding: 20px 0 0 0 !important; max-width: 100% !important; }
 [data-testid="stSidebar"], header, footer { display: none !important; }
-[data-testid="stHeader"] { background: transparent !important; }
+[data-testid="stHeader"] { background: transparent !important; height: 0px !important; }
 
+/* ── NATIVE NAVBAR BUTTON RESET OVERRIDES ── */
 div[data-testid="stHorizontalBlock"] .stButton > button {
     background: transparent !important;
-    color: var(--text-muted) !important;
+    color: #475569 !important;
     border: none !important;
-    padding: 0 !important;
+    padding: 6px 0 !important;
     font-size: 14px !important;
     font-weight: 500 !important;
     box-shadow: none !important;
     transform: none !important;
     transition: color 0.15s ease !important;
 }
-
 div[data-testid="stHorizontalBlock"] .stButton > button:hover {
-    color: var(--text-main) !important;
+    color: #0F172A !important;
     background: transparent !important;
-
-/* Framework Clean Up Overrides */
-html, body, [data-testid="stAppViewContainer"], .main .block-container {
-    background-color: var(--bg-base) !important;
-    color: var(--text-main) !important;
-    font-family: var(--ff-sans) !important;
 }
-.main .block-container { padding: 0 !important; max-width: 100% !important; }
-[data-testid="stSidebar"], header, footer { display: none !important; }
-[data-testid="stHeader"] { background: transparent !important; }
 
-/* ── NAV ARCHITECTURE ── */
+/* ── STATIC LIGHT NAVBAR EMBEDDED STYLES ── */
 .navbar-static {
     display: flex; justify-content: space-between; align-items: center; padding: 10px 60px; background: transparent;
 }
 .nav-brand {
-    font-family: var(--ff-sans); font-weight: 600; font-size: 19px; display: flex; align-items: center; gap: 8px; color: var(--text-main-light);
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 19px; display: flex; align-items: center; gap: 8px; color: #0F172A !important;
 }
-.nav-brand-icon { color: var(--rose); font-size: 22px; line-height: 1; }
-.btn-solid { background: var(--text-main-light); color: white !important; padding: 10px 22px; border-radius: 30px; box-shadow: var(--shadow); }
+.nav-brand-icon { color: #E11D48; font-size: 22px; line-height: 1; }
+.btn-solid { background: #0F172A !important; color: white !important; padding: 10px 22px; border-radius: 30px; }
 
 /* ── HERO GRAPHIC CANVAS STYLING ── */
 .hero-container {
     padding-top: 50px; padding-bottom: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: transparent;
 }
 .hero-title {
-    font-family: var(--ff-display); font-size: 84px; font-weight: 300; line-height: 1.1; color: var(--text-main-light); margin-bottom: 24px; letter-spacing: -2px;
+    font-family: 'Fraunces', serif; font-size: 84px; font-weight: 300; line-height: 1.1; color: #0F172A !important; margin-bottom: 24px; letter-spacing: -2px;
 }
-.hero-title i { font-style: italic; color: #1E293B; font-weight: 400; }
+.hero-title i { font-style: italic; color: #1E293B !important; font-weight: 400; }
 .hero-subtitle {
-    font-family: var(--ff-sans); font-size: 17px; color: var(--text-muted-light); max-width: 580px; line-height: 1.6; margin-bottom: 30px;
+    font-family: 'Inter', sans-serif; font-size: 17px; color: #475569 !important; max-width: 580px; line-height: 1.6; margin-bottom: 30px;
 }
 .bg-canvas {
     position: absolute; top: 0; left: 0; right: 0; height: 580px;
-    background: radial-gradient(circle at 50% 25%, #EBF1FA 0%, #F1F5F9 35%, #F7F8FA 70%); z-index: -1;
+    background: radial-gradient(circle at 50% 25%, #EBF1FA 0%, #F1F5F9 35%, #F7F8FA 70%) !important; z-index: -1;
 }
 
 /* ── INPUT LAYOUT FORM SCREEN ── */
 .form-screen { padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .input-card {
-    background: var(--bg-surface-light); padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow); border: 1px solid var(--border-light); width: 100%; max-width: 520px; text-align: center; margin-bottom: 24px;
+    background: #FFFFFF !important; padding: 40px; border-radius: 24px; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05); border: 1px solid #E2E8F0; width: 100%; max-width: 520px; text-align: center; margin-bottom: 24px;
 }
-.input-card h2 { font-family: var(--ff-display); font-size: 36px; font-style: italic; margin-bottom: 12px; color: var(--text-main-light); }
-.input-card p { color: var(--text-muted-light); font-size: 14px; margin-bottom: 0; }
+.input-card h2 { font-family: 'Fraunces', serif; font-size: 36px; font-style: italic; margin-bottom: 12px; color: #0F172A !important; }
+.input-card p { color: #475569 !important; font-size: 14px; margin-bottom: 0; }
 
 /* ── SECTION TARGET MATRIX DISPLAYED ELEMENTS ── */
 .section-anchor {
-    padding: 50px 44px; background: var(--bg-surface-light); border-radius: var(--radius-md); margin-top: 24px; border: 1px solid var(--border-light); box-shadow: var(--shadow);
+    padding: 50px 44px; background: #FFFFFF !important; border-radius: 12px; margin-top: 24px; border: 1px solid #E2E8F0; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05); text-align: left !important;
 }
-.section-anchor h2 { font-family: var(--ff-display); font-style: italic; font-size: 32px; color: var(--text-main-light); margin-bottom: 12px; }
-.section-anchor p { color: var(--text-muted-light); line-height: 1.65; font-size: 14.5px; }
+.section-anchor h2 { font-family: 'Fraunces', serif; font-style: italic; font-size: 32px; color: #0F172A !important; margin-bottom: 12px; text-align: left !important;}
+.section-anchor p { color: #475569 !important; line-height: 1.65; font-size: 14.5px; text-align: left !important;}
 
 /* ── GLOBAL WORKSPACE FORM ENGINES ── */
 .stTextInput input, .stNumberInput input {
-    background: var(--bg-surface-light) !important; border: 1px solid var(--border-light) !important; border-radius: 6px !important; padding: 10px 14px !important; font-family: var(--ff-mono) !important; color: var(--text-main-light) !important;
+    background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; border-radius: 6px !important; padding: 10px 14px !important; font-family: 'Fira Code', monospace !important; color: #0F172A !important;
 }
-.stTextInput input:focus, .stNumberInput input:focus { border-color: var(--blue) !important; box-shadow: 0 0 0 3px var(--blue-dim) !important;}
 </style>
 
 """, unsafe_allow_html=True)
