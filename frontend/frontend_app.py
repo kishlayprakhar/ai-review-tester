@@ -102,6 +102,7 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
     color: var(--text-muted) !important;
     text-decoration: none !important;
     transition: color 0.15s ease;
+    cursor: pointer !important;
 }
 .nav-links a:hover {
     color: var(--text-main) !important;
@@ -319,12 +320,12 @@ def findings_html(icon, cls, items, kind):
 def render_navbar():
     st.markdown("""
         <div class="navbar">
-            <div class="nav-brand"><span class="nav-brand-icon">◈</span> CodeSentry</div>
+            <div class="nav-brand"><span class="nav-brand-icon">◈</span> CodeSense</div>
             <div class="nav-links">
-                <span>Features</span>
-                <span>How it Works</span>
-                <span>Pricing</span>
-                <span>Changelog</span>
+               <a href="javascript:void(0);" onclick="window.parent.document.getElementById('features').scrollIntoView({behavior: 'smooth'});">Features</a>
+                <a href="javascript:void(0);" onclick="window.parent.document.getElementById('how-it-works').scrollIntoView({behavior: 'smooth'});">How it Works</a>
+                <a href="javascript:void(0);" onclick="window.parent.document.getElementById('pricing').scrollIntoView({behavior: 'smooth'});">Pricing</a>
+                <a href="javascript:void(0);" onclick="window.parent.document.getElementById('changelog').scrollIntoView({behavior: 'smooth'});">Changelog</a>
             </div>
             <div class="nav-actions">
                 <span style="cursor:pointer; color:var(--text-muted);">Log in</span>
