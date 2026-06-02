@@ -437,17 +437,16 @@ elif st.session_state.page == 'results':
         # ── ⚡ FIXED: HIGH-CONTRAST DYNAMIC AI SUMMARY LAYER ──
         if summ:
             st.markdown(f"""
-                <div style="background: #FFFFFF !important; 
+                <div style="background-color: #FFFFFF !important; 
                             border: 1px solid #E2E8F0 !important; 
-                            padding: 22px 28px; 
-                            border-radius: 12px !important;
-                            margin-top: 15px;
-                            margin-bottom: 25px;
-                            position: relative;
-                            z-index: 10;
-                            box-shadow: 0 4px 12px rgba(15,23,42,0.015);">
+                            padding: 24px 28px !important; 
+                            border-radius: 12px !important; 
+                            margin-top: 15px !important;
+                            margin-bottom: 25px !important;
+                            display: block !important;
+                            box-shadow: 0 4px 12px rgba(15,23,42,0.015) !important;">
                     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-                              font-size: 13px !important; 
+                                font-size: 13px !important; 
                                 text-transform: uppercase !important; 
                                 letter-spacing: 1.5px !important; 
                                 color: #0F172A !important; 
@@ -457,7 +456,7 @@ elif st.session_state.page == 'results':
                                 visibility: visible !important;">
                         AI Summary
                     </div>
-                      <p style="color: #475569 !important; 
+                    <p style="color: #475569 !important; 
                               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
                               font-size: 14.5px !important; 
                               margin: 0 !important; 
@@ -465,6 +464,7 @@ elif st.session_state.page == 'results':
                               font-style: normal !important;
                               font-weight: 400 !important;
                               display: block !important;">
+                        {review.get("summary", "No summary text returned from backend.")}
                     </p>
                 </div>
             """, unsafe_allow_html=True)
