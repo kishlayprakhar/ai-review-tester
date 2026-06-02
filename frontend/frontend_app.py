@@ -156,7 +156,7 @@ def findings_html(icon, cls, items, kind):
 # ROUTER — VIEW CONTROLLER ARCHITECTURE
 # ══════════════════════════════════════════════════════
 
-# PAGE 1: REFINED LANDING
+
 # PAGE 1: REFINED LIGHT LANDING
 if st.session_state.page == 'landing':
     st.markdown('<div class="bg-canvas"></div>', unsafe_allow_html=True)
@@ -169,22 +169,22 @@ if st.session_state.page == 'landing':
     
     with nav_cols[1]:
         if st.button("Features", key="nav_feat"):
-            st.markdown("<script>window.scrollTo({top: 400, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            st.markdown("<script>window.scrollTo({top: 520, behavior: 'smooth'});</script>", unsafe_allow_html=True)
             
     with nav_cols[2]:
         if st.button("How it Works", key="nav_how"):
-            st.markdown("<script>window.scrollTo({top: 650, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            st.markdown("<script>window.scrollTo({top: 760, behavior: 'smooth'});</script>", unsafe_allow_html=True)
             
     with nav_cols[3]:
         if st.button("Pricing", key="nav_price"):
-            st.markdown("<script>window.scrollTo({top: 900, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            st.markdown("<script>window.scrollTo({top: 1000, behavior: 'smooth'});</script>", unsafe_allow_html=True)
             
     with nav_cols[4]:
         if st.button("Changelog", key="nav_change"):
-            st.markdown("<script>window.scrollTo({top: 1150, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            st.markdown("<script>window.scrollTo({top: 1240, behavior: 'smooth'});</script>", unsafe_allow_html=True)
             
     with nav_cols[5]:
-        st.markdown('<div style="text-align:right; margin-top:5px; font-size:14px; font-weight:500; color:var(--text-muted); cursor:pointer;">Log in</div>', unsafe_allow_html=True)
+        st.markdown('<div style="text-align:right; margin-top:5px; font-size:14px; font-weight:500; color:#475569; cursor:pointer;">Log in</div>', unsafe_allow_html=True)
         
     with nav_cols[6]:
         st.markdown('<div class="btn-solid" style="text-align:center; font-size:14px; font-weight:500; cursor:pointer;">Sign up</div>', unsafe_allow_html=True)
@@ -213,8 +213,8 @@ if st.session_state.page == 'landing':
     # Features Section
     st.markdown("""
         <div id="features" class="section-anchor">
-            <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Features</h2>
-            <p style="color: var(--text-muted); line-height: 1.6;">
+            <h2>Features</h2>
+            <p>
                 • <b>Deep Bug Detection:</b> Locates complex logical fallacies and functional math bugs instantly.<br>
                 • <b>Performance Validation:</b> Recommends code validation changes to keep your algorithms hyper-fast.<br>
                 • <b>Zero-Trust Security:</b> Scans dependencies and checks for exposed access tokens or dangerous parameters.
@@ -225,8 +225,8 @@ if st.session_state.page == 'landing':
     # How it Works Section
     st.markdown("""
         <div id="how-it-works" class="section-anchor">
-            <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">How it Works</h2>
-            <p style="color: var(--text-muted); line-height: 1.6;">
+            <h2>How it Works</h2>
+            <p>
                 1. Provide your public or private GitHub repository path.<br>
                 2. Input the pull request target sequence number identifier.<br>
                 3. Our LLaMA-powered intelligence parses the code delta to yield structured analytics.
@@ -237,8 +237,8 @@ if st.session_state.page == 'landing':
     # Pricing Section
     st.markdown("""
         <div id="pricing" class="section-anchor">
-            <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Pricing</h2>
-            <p style="color: var(--text-muted); line-height: 1.6;">
+            <h2>Pricing</h2>
+            <p>
                 • <b>Developer Tier:</b> Free forever for up to 50 review analyses per month.<br>
                 • <b>Startup Tier ($19/mo):</b> Unlimited repo scans with deep historical tracking pipelines.
             </p>
@@ -248,8 +248,8 @@ if st.session_state.page == 'landing':
     # Changelog Section
     st.markdown("""
         <div id="changelog" class="section-anchor">
-            <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Changelog</h2>
-            <p style="color: var(--text-muted); line-height: 1.6;">
+            <h2>Changelog</h2>
+            <p>
                 • <b>v1.0 (Current):</b> Shifted to clean light landing templates with high contrast dark workspace dashboard components.<br>
                 • <b>v0.8:</b> Added multi-page routing state trackers and support for Groq LLaMA 3 inference endpoints.
             </p>
@@ -258,12 +258,16 @@ if st.session_state.page == 'landing':
     """, unsafe_allow_html=True)
     
     st.markdown("</div>", unsafe_allow_html=True)
- 
 
-# PAGE 2: FOCUSED SEARCH LAYER
+# ── ⚡ PAGE 2: FIXED HIGHER CONTRAST INPUT CARD SCREEN ──
 elif st.session_state.page == 'input':
-    render_navbar()
-    st.markdown('<div class="form-screen">', unsafe_allow_html=True)
+    # Replaced render_navbar() with static high-contrast brand bar
+    st.markdown("""
+        <div class="navbar-static" style="padding: 24px 60px;">
+            <div class="nav-brand"><span class="nav-brand-icon">◈</span> CodeSentry</div>
+        </div>
+        <div class="form-screen">
+    """, unsafe_allow_html=True)
     
     c1, c2, c3 = st.columns([1, 1.8, 1])
     with c2:
@@ -292,9 +296,7 @@ elif st.session_state.page == 'input':
         st.markdown("</div>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# PAGE 3: COMPACT SYSTEM METRIC VIEWER
-# PAGE 3: PREMIUM DARK REVIEW INTERFACE
-# PAGE 3: REFINED DARK REVIEW INTERFACE (NO CARD COLORS - FLUID TEXT MATRIX)
+# ── ⚡ PAGE 3: COMPACT LIGHT METRIC WORKSPACE ──
 elif st.session_state.page == 'results':
     st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
     
@@ -311,7 +313,7 @@ elif st.session_state.page == 'results':
                 <div class="ctx-pr">PR #{st.session_state.pr} · GitHub Repository</div>
             </div>
             <a href="https://github.com/{st.session_state.repo}/pull/{st.session_state.pr}" 
-               target="_blank" style="text-decoration:none; background:#4A9EFF; color:#060910; padding:10px 18px; border-radius:6px; font-weight:600; font-size:13px; font-family: 'Fira Code', monospace;">
+               target="_blank" style="text-decoration:none; background:#3B82F6; color:#FFFFFF; padding:10px 18px; border-radius:6px; font-weight:600; font-size:13px; font-family: 'Fira Code', monospace;">
                VIEW ON GITHUB ↗
             </a>
         </div>
@@ -338,27 +340,23 @@ elif st.session_state.page == 'results':
             <div class="tiles">
                 <div class="tile tile-score">
                     <div class="tile-label">Quality Score</div>
-                    <div class="tile-val tv-score" style="color:var(--accent-blue);">{score}<span style='font-size:14px;color:var(--text-muted-dark);font-family:var(--ff-mono);font-style:normal;'> out of 10</span></div>
+                    <div class="tile-val tv-score">{score}<span style='font-size:14px; color:#94A3B8; font-family:var(--ff-mono); font-style:normal;'> out of 10</span></div>
                 </div>
                 <div class="tile tile-bugs">
                     <div class="tile-label">Bugs Found</div>
-                    <div class="tile-val tv-bugs" style="color:var(--accent-green);">{len(bugs)}<span style='font-size:14px;color:var(--text-muted-dark);font-family:var(--ff-mono);font-style:normal;'> issues detected</span></div>
+                    <div class="tile-val tv-bugs">{len(bugs)}<span style='font-size:14px; color:#94A3B8; font-family:var(--ff-mono); font-style:normal;'> issues detected</span></div>
                 </div>
                 <div class="tile tile-perf">
                     <div class="tile-label">Improvements</div>
-                    <div class="tile-val tv-perf" style="color:var(--accent-amber);">{len(imps)}<span style='font-size:14px;color:var(--text-muted-dark);font-family:var(--ff-mono);font-style:normal;'> suggestions</span></div>
+                    <div class="tile-val tv-perf">{len(imps)}<span style='font-size:14px; color:#94A3B8; font-family:var(--ff-mono); font-style:normal;'> suggestions</span></div>
                 </div>
                 <div class="tile tile-sec">
                     <div class="tile-label">Security</div>
-                    <div class="tile-val tv-sec" style="color:var(--accent-rose);">{len(secs)}<span style='font-size:14px;color:var(--text-muted-dark);font-family:var(--ff-mono);font-style:normal;'> vulnerabilities</span></div>
+                    <div class="tile-val tv-sec">{len(secs)}<span style='font-size:14px; color:#94A3B8; font-family:var(--ff-mono); font-style:normal;'> vulnerabilities</span></div>
                 </div>
             </div>
-            
-            
         """, unsafe_allow_html=True)
 
-
-        # ── ⚡ FIXED: HIGH-CONTRAST DYNAMIC AI SUMMARY LAYER ──
         if summ:
             st.markdown(f"""
                 <div style="background-color: #FFFFFF !important; 
@@ -388,22 +386,20 @@ elif st.session_state.page == 'results':
                               font-style: normal !important;
                               font-weight: 400 !important;
                               display: block !important;">
-                        {review.get("summary", "No summary text returned from backend.")}
+                        {review.get("summary", "No summary text returned.")}
                     </p>
                 </div>
             """, unsafe_allow_html=True)
 
         st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
-  
 
-        # ── ⚡ RECONSTRUCTED FLAT COLUMN GRID (Matches image_2e4cdd / Screenshot 025125 exactly) ──
+        # ── COLUMN GRID ──
         c1, c2, c3, c4 = st.columns([3, 3, 3, 2.5])
         
         with c1:
-            # Title Row with flat container execution
             st.markdown(f"""
-                <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:28px; color:var(--text-primary-dark); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
-                    Bugs <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:var(--text-secondary-dark); background:rgba(74,158,255,0.06); padding:3px 10px; border-radius:20px; border:1px solid var(--border-dark);">{len(bugs)} found</span>
+                <h4 style="font-family:var(--ff-display); font-style:italic; font-size:28px; color:var(--text-main-light); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
+                    Bugs <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:#475569; background:#FFFFFF; padding:3px 10px; border-radius:20px; border:1px solid #E2E8F0;">{len(bugs)} found</span>
                 </h4>
                 <div style="height:260px; overflow-y:auto; padding-right:4px;">
                     {findings_html("🪲", "fi-bug", bugs, "bug")}
@@ -412,8 +408,8 @@ elif st.session_state.page == 'results':
             
         with c2:
             st.markdown(f"""
-                <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:28px; color:var(--text-primary-dark); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
-                    Performance <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:var(--text-secondary-dark); background:rgba(74,158,255,0.06); padding:3px 10px; border-radius:20px; border:1px solid var(--border-dark);">{len(imps)} suggestions</span>
+                <h4 style="font-family:var(--ff-display); font-style:italic; font-size:28px; color:var(--text-main-light); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
+                    Performance <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:#475569; background:#FFFFFF; padding:3px 10px; border-radius:20px; border:1px solid #E2E8F0;">{len(imps)} suggestions</span>
                 </h4>
                 <div style="height:260px; overflow-y:auto; padding-right:4px;">
                     {findings_html("⚡", "fi-perf", imps, "suggestion")}
@@ -422,8 +418,8 @@ elif st.session_state.page == 'results':
             
         with c3:
             st.markdown(f"""
-                <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:28px; color:var(--text-primary-dark); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
-                    Security <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:var(--text-secondary-dark); background:rgba(74,158,255,0.06); padding:3px 10px; border-radius:20px; border:1px solid var(--border-dark);">{len(secs)} issues</span>
+                <h4 style="font-family:var(--ff-display); font-style:italic; font-size:28px; color:var(--text-main-light); margin:0 0 16px 0; display:flex; align-items:center; gap:12px;">
+                    Security <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:11px; color:#475569; background:#FFFFFF; padding:3px 10px; border-radius:20px; border:1px solid #E2E8F0;">{len(secs)} issues</span>
                 </h4>
                 <div style="height:260px; overflow-y:auto; padding-right:4px;">
                     {findings_html("🔒", "fi-sec", secs, "security issue")}
