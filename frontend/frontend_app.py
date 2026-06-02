@@ -443,6 +443,8 @@ elif st.session_state.page == 'results':
                             border-radius: var(--radius-md); 
                             margin-top: 10px;
                             margin-bottom: 24px;
+                            position: relative;
+                            z-index: 10;
                             box-shadow: 0 4px 12px rgba(15,23,42,0.015);">
                     <h4 style="margin: 0 0 10px 0; 
                                font-family: var(--ff-mono) !important; 
