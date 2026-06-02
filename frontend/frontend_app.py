@@ -430,10 +430,7 @@ elif st.session_state.page == 'results':
                 </div>
             </div>
             
-            <div class="summary-box">
-                <h4>AI Summary</h4>
-                <p>{summ}</p>
-            </div>
+            
         """, unsafe_allow_html=True)
 
 
