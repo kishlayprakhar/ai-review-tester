@@ -438,33 +438,33 @@ elif st.session_state.page == 'results':
         if summ:
             st.markdown(f"""
                 <div style="background: #FFFFFF !important; 
-                            border: 1px solid var(--border) !important; 
-                            padding: 22px 26px; 
-                            border-radius: var(--radius-md); 
-                            margin-top: 10px;
-                            margin-bottom: 24px;
+                            border: 1px solid #E2E8F0 !important; 
+                            padding: 22px 28px; 
+                            border-radius: 12px !important;
+                            margin-top: 15px;
+                            margin-bottom: 25px;
                             position: relative;
                             z-index: 10;
                             box-shadow: 0 4px 12px rgba(15,23,42,0.015);">
-                    <h4 style="margin: 0 0 10px 0; 
-                               font-family: var(--ff-mono) !important; 
-                               font-size: 11px !important; 
-                               text-transform: uppercase !important; 
-                               letter-spacing: 1.5px !important; 
-                               color: #0F172A !important; 
-                               font-weight: 700 !important;
-                               display: block !important;
-                               visibility: visible !important;">
+                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                              font-size: 13px !important; 
+                                text-transform: uppercase !important; 
+                                letter-spacing: 1.5px !important; 
+                                color: #0F172A !important; 
+                                font-weight: 700 !important;
+                                margin-bottom: 12px !important;
+                                display: block !important;
+                                visibility: visible !important;">
                         AI Summary
-                    </h4>
-                    <p style="color: var(--text-muted) !important; 
-                              font-family: var(--ff-sans) !important; 
+                    </div>
+                      <p style="color: #475569 !important; 
+                              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
                               font-size: 14.5px !important; 
                               margin: 0 !important; 
                               line-height: 1.65 !important; 
                               font-style: normal !important;
-                              font-weight: 400 !important;">
-                        {summ}
+                              font-weight: 400 !important;
+                              display: block !important;">
                     </p>
                 </div>
             """, unsafe_allow_html=True)
