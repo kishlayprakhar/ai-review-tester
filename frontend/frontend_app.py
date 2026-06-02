@@ -91,6 +91,30 @@ html, body, [data-testid="stAppViewContainer"], .main .block-container {
     position: relative;
     z-index: 100;
 }
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.nav-links a {
+    color: var(--text-muted) !important;
+    text-decoration: none !important;
+    transition: color 0.15s ease;
+}
+.nav-links a:hover {
+    color: var(--text-main) !important;
+    cursor: pointer;
+}
+.section-anchor {
+    padding: 60px 40px;
+    background: #FFFFFF;
+    border-radius: var(--radius-md);
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
 .nav-brand {
     font-family: var(--ff-sans);
     font-weight: 600;
@@ -303,7 +327,7 @@ def render_navbar():
                 <span>Changelog</span>
             </div>
             <div class="nav-actions">
-                <span style="cursor:pointer;">Log in</span>
+                <span style="cursor:pointer; color:var(--text-muted);">Log in</span>
                 <span class="btn-solid" style="cursor:pointer;">Sign up free</span>
             </div>
         </div>
@@ -335,6 +359,58 @@ if st.session_state.page == 'landing':
             go_to_input()
             st.rerun()
         st.markdown("<p style='font-size:12px; color:#64748B; margin-top:14px;'>No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
+
+
+   st.markdown("<div style='margin-top: 80px; padding: 0 60px;'>", unsafe_allow_html=True)
+    
+    # 1. Features Section
+    st.markdown("""
+        <div id="features" class="section-anchor">
+            <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Features</h2>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+                • <b>Deep Bug Detection:</b> Locates complex logical fallacies and functional math bugs instantly.<br>
+                • <b>Performance Validation:</b> Recommends code validation changes to keep your algorithms hyper-fast.<br>
+                • <b>Zero-Trust Security:</b> Scans dependencies and checks for exposed access tokens or dangerous parameters.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # 2. How it Works Section
+    st.markdown("""
+        <div id="how-it-works" class="section-anchor">
+            <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">How it Works</h2>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+                1. Provide your public or private GitHub repository path.<br>
+                2. Input the pull request target sequence number identifier.<br>
+                3. Our LLaMA-powered intelligence parses the code delta to yield structured analytics.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # 3. Pricing Section
+    st.markdown("""
+        <div id="pricing" class="section-anchor">
+            <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Pricing</h2>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+                • <b>Developer Tier:</b> Free forever for up to 50 review analyses per month.<br>
+                • <b>Startup Tier ($19/mo):</b> Unlimited repo scans with deep historical tracking pipelines.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # 4. Changelog Section
+    st.markdown("""
+        <div id="changelog" class="section-anchor">
+            <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Changelog</h2>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+                • <b>v1.0 (Current):</b> Shifted to clean light landing templates with high contrast dark workspace dashboard components.<br>
+                • <b>v0.8:</b> Added multi-page routing state trackers and support for Groq LLaMA 3 inference endpoints.
+            </p>
+        </div>
+        <div style='margin-bottom: 100px;'></div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # PAGE 2: FOCUSED SEARCH LAYER
 elif st.session_state.page == 'input':
