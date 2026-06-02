@@ -220,7 +220,7 @@ if st.session_state.page == 'landing':
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
             st.rerun()
-        st.markdown("""<p>style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        st.markdown("""<pstyle="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
                           font-size: 13px !important; 
                           color: #64748B !important; 
                           margin: 16px 0 0 0 !important; 
