@@ -210,12 +210,12 @@ if st.session_state.page == 'landing':
         st.markdown("""
             <div style="background: #FFFFFF !important;
                         border: 1px solid #E2E8F0 !important;
-                        border-radius: 16px !important;
-                        padding: 32px 40px !important;
+                        border-radius: 20px !important;
+                        padding: 36px 44px !important;
                         text-align: center !important;
-                        margin-top: -10px !important;
-                        margin-bottom: 20px !important;
-                        box-shadow: 0 10px 30px -15px rgba(15, 23, 42, 0.08) !important;">
+                        margin-top: -15px !important;
+                        margin-bottom: 25px !important;
+                        box-shadow: 0 12px 34px -10px rgba(15, 23, 42, 0.06) !important;">
         """, unsafe_allow_html=True)
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
@@ -229,7 +229,7 @@ if st.session_state.page == 'landing':
                           letter-spacing: -0.1px !important;">
                     No credit card required · Setup in 60 seconds</p></div>""", unsafe_allow_html=True)
 
-    st.markdown("<div style='margin-top: 150px; padding: 0 60px;'>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top: 140px; padding: 0 60px;'>", unsafe_allow_html=True)
     
     # Features Section
 
