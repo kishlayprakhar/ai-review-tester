@@ -360,8 +360,7 @@ if st.session_state.page == 'landing':
             st.rerun()
         st.markdown("<p style='font-size:12px; color:#64748B; margin-top:14px;'>No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
 
-
-   st.markdown("<div style='margin-top: 80px; padding: 0 60px;'>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top: 80px; padding: 0 60px;'>", unsafe_allow_html=True)
     
     # 1. Features Section
     st.markdown("""
