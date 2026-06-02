@@ -116,6 +116,11 @@ div[data-testid="stHorizontalBlock"] .stButton > button:hover {
 .stTextInput input, .stNumberInput input {
     background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; border-radius: 6px !important; padding: 10px 14px !important; font-family: 'Fira Code', monospace !important; color: #0F172A !important;
 }
+
+.stButton > button[kind="primary"], .stButton > button {
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+}
 </style>
 
 """, unsafe_allow_html=True)
@@ -215,14 +220,14 @@ if st.session_state.page == 'landing':
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
             st.rerun()
-        st.markdown("<p>style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        st.markdown("""<p>style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
                           font-size: 13px !important; 
                           color: #64748B !important; 
                           margin: 16px 0 0 0 !important; 
                           text-align: center !important;
                           font-weight: 400 !important;
                           letter-spacing: -0.1px !important;">
-                    No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
+                    No credit card required · Setup in 60 seconds</p></div>""", unsafe_allow_html=True)
 
     st.markdown("<div style='margin-top: 150px; padding: 0 60px;'>", unsafe_allow_html=True)
     
