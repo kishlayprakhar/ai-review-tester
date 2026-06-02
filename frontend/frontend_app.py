@@ -208,14 +208,31 @@ if st.session_state.page == 'landing':
     c1, c2, c3 = st.columns([1.2, 1, 1.2])
     with c2:
         st.markdown("""
-            <div style="background: #FFFFFF !important;
-                        border: 1px solid #E2E8F0 !important;
-                        border-radius: 20px !important;
-                        padding: 36px 44px !important;
-                        text-align: center !important;
-                        margin-top: -15px !important;
-                        margin-bottom: 25px !important;
-                        box-shadow: 0 12px 34px -10px rgba(15, 23, 42, 0.06) !important;">
+            <style>
+            /* Target only the button inside this block to prevent breaking other pages */
+            div[data-testid="stColumn"] .stButton > button {
+                background-color: #FFFFFF !important;
+                color: #334155 !important;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                font-size: 15px !important;
+                font-weight: 700 !important;
+                border: 1px solid #E2E8F0 !important;
+                border-radius: 50px !important; /* Forces the perfect capsule pill shape */
+                padding: 14px 28px !important;
+                width: 100% !important;
+                display: block !important;
+                box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+                transition: all 0.2s ease !important;
+            }
+            
+            div[data-testid="stColumn"] .stButton > button:hover {
+                background-color: #F8FAFC !important;
+                border-color: #CBD5E1 !important;
+                color: #0F172A !important;
+                transform: translateY(-1px) !important;
+                box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08) !important;
+            }
+            </style>
         """, unsafe_allow_html=True)
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
