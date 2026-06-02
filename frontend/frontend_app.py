@@ -436,6 +436,36 @@ elif st.session_state.page == 'results':
             </div>
         """, unsafe_allow_html=True)
 
+
+        if summ:
+            st.markdown(f"""
+                <div style="background: #FFFFFF !important; 
+                            border: 1px solid var(--border-light) !important; 
+                            padding: 20px 24px; 
+                            border-radius: var(--radius-md); 
+                            margin-top: 10px;
+                            margin-bottom: 24px;
+                            box-shadow: 0 4px 12px rgba(15,23,42,0.01);">
+                    <h4 style="margin: 0 0 10px 0; 
+                               font-family: var(--ff-mono); 
+                               font-size: 11px; 
+                               text-transform: uppercase; 
+                               letter-spacing: 1.5px; 
+                               color: #1E293B !important; 
+                               font-weight: 600;">
+                        AI Summary
+                    </h4>
+                    <p style="color: var(--text-muted-light) !important; 
+                              font-family: var(--ff-sans); 
+                              font-size: 14.5px; 
+                              margin: 0; 
+                              line-height: 1.6; 
+                              font-style: normal;">
+                        {summ}
+                    </p>
+                </div>
+            """, unsafe_allow_html=True)
+
         # ── ⚡ RECONSTRUCTED FLAT COLUMN GRID (Matches image_2e4cdd / Screenshot 025125 exactly) ──
         c1, c2, c3, c4 = st.columns([3, 3, 3, 2.5])
         
