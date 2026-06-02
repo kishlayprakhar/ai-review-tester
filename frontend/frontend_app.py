@@ -340,7 +340,6 @@ def render_navbar():
 
 # PAGE 1: REFINED LANDING
 if st.session_state.page == 'landing':
-    st.markdown('<div class="bg-canvas"></div>', unsafe_allow_html=True)
     render_navbar()
     st.markdown("""
         <div class="hero-container">
@@ -354,15 +353,15 @@ if st.session_state.page == 'landing':
     
     c1, c2, c3 = st.columns([1.2, 1, 1.2])
     with c2:
-        st.markdown("<div style='margin-top: -30px; text-align: center;'>", unsafe_allow_html=True)
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
             st.rerun()
-        st.markdown("<p style='font-size:12px; color:#64748B; margin-top:14px;'>No credit card required · Setup in 60 seconds</p></div>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:12px; text-align:center; color:#64748B; margin-top:14px;'>No credit card required · Setup in 60 seconds</p>", unsafe_allow_html=True)
 
+   
     st.markdown("<div style='margin-top: 80px; padding: 0 60px;'>", unsafe_allow_html=True)
     
-    # 1. Features Section
+    # Features Section
     st.markdown("""
         <div id="features" class="section-anchor">
             <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Features</h2>
@@ -374,7 +373,7 @@ if st.session_state.page == 'landing':
         </div>
     """, unsafe_allow_html=True)
 
-    # 2. How it Works Section
+    # How it Works Section
     st.markdown("""
         <div id="how-it-works" class="section-anchor">
             <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">How it Works</h2>
@@ -386,7 +385,7 @@ if st.session_state.page == 'landing':
         </div>
     """, unsafe_allow_html=True)
 
-    # 3. Pricing Section
+    # Pricing Section
     st.markdown("""
         <div id="pricing" class="section-anchor">
             <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Pricing</h2>
@@ -397,7 +396,7 @@ if st.session_state.page == 'landing':
         </div>
     """, unsafe_allow_html=True)
 
-    # 4. Changelog Section
+    # Changelog Section
     st.markdown("""
         <div id="changelog" class="section-anchor">
             <h2 style="font-family: var(--ff-display); font-style: italic; font-size: 32px; margin-bottom: 12px;">Changelog</h2>
@@ -409,7 +408,7 @@ if st.session_state.page == 'landing':
         <div style='margin-bottom: 100px;'></div>
     """, unsafe_allow_html=True)
     
-    st.markdown("</div>", unsafe_allow_html=True)
+ 
 
 # PAGE 2: FOCUSED SEARCH LAYER
 elif st.session_state.page == 'input':
