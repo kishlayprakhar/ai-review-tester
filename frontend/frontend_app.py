@@ -369,12 +369,15 @@ elif st.session_state.page == 'input':
     st.markdown('</div>', unsafe_allow_html=True)
 
 # PAGE 3: COMPACT SYSTEM METRIC VIEWER
+# PAGE 3: PREMIUM DARK REVIEW INTERFACE
 elif st.session_state.page == 'results':
-    st.markdown('<div class="results-container">', unsafe_allow_html=True)
+    # This empty markdown spacing rule keeps the content pushed exactly where it belongs
+    st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
     
-    c_back, _ = st.columns([1, 8])
+    c_back, _ = st.columns([1.2, 8.8])
     with c_back:
-        if st.button("← Search"):
+        # ⚡ CHANGED: Search word replaced with Back
+        if st.button("← Back", use_container_width=True):
             go_to_input()
             st.rerun()
         
@@ -382,11 +385,11 @@ elif st.session_state.page == 'results':
         <div class="ctx-bar">
             <div>
                 <div class="ctx-repo">{st.session_state.repo} / pull / {st.session_state.pr}</div>
-                <div class="ctx-pr">PR #{st.session_state.pr} · Automated AI Review</div>
+                <div class="ctx-pr">PR #{st.session_state.pr} · GitHub Repository</div>
             </div>
             <a href="https://github.com/{st.session_state.repo}/pull/{st.session_state.pr}" 
-               target="_blank" style="text-decoration:none; background:#0F172A; color:#FFFFFF; padding:10px 18px; border-radius:6px; font-weight:500; font-size:13px;">
-               View on GitHub ↗
+               target="_blank" style="text-decoration:none; background:#4A9EFF; color:#060910; padding:10px 18px; border-radius:6px; font-weight:600; font-size:13px; font-family: 'Fira Code', monospace;">
+               VIEW ON GITHUB ↗
             </a>
         </div>
     """, unsafe_allow_html=True)
@@ -410,37 +413,66 @@ elif st.session_state.page == 'results':
 
         st.markdown(f"""
             <div class="tiles">
-                <div class="tile">
+                <div class="tile tile-score">
                     <div class="tile-label">Quality Score</div>
-                    <div class="tile-val tv-score">{score}<span style='font-size:16px;color:var(--text-light);font-family:var(--ff-sans);font-style:normal;'> /10</span></div>
+                    <div class="tile-val tv-score" style="color:var(--accent-blue);">{score}<span style='font-size:14px;color:var(--text-muted-dark);font-family:var(--ff-mono);font-style:normal;'> out of 10</span></div>
                 </div>
-                <div class="tile">
+                <div class="tile tile-bugs">
                     <div class="tile-label">Bugs Found</div>
-                    <div class="tile-val tv-bugs">{len(bugs)}</div>
+                    <div class="tile-val tv-bugs" style="color:var(--accent-green);">{len(bugs)}<span style='font-size:14px;color:var(--text-muted-dark);font-family:var(--ff-mono);font-style:normal;'> issues detected</span></div>
                 </div>
-                <div class="tile">
+                <div class="tile tile-perf">
                     <div class="tile-label">Improvements</div>
-                    <div class="tile-val tv-perf">{len(imps)}</div>
+                    <div class="tile-val tv-perf" style="color:var(--accent-amber);">{len(imps)}<span style='font-size:14px;color:var(--text-muted-dark);font-family:var(--ff-mono);font-style:normal;'> suggestions</span></div>
                 </div>
-                <div class="tile">
+                <div class="tile tile-sec">
                     <div class="tile-label">Security</div>
-                    <div class="tile-val tv-sec">{len(secs)}</div>
+                    <div class="tile-val tv-sec" style="color:var(--accent-rose);">{len(secs)}<span style='font-size:14px;color:var(--text-muted-dark);font-family:var(--ff-mono);font-style:normal;'> vulnerabilities</span></div>
                 </div>
             </div>
+            
+            <div class="summary-box">
+                <h4>AI Summary</h4>
+                <p>{summ}</p>
+            </div>
         """, unsafe_allow_html=True)
-        
-        st.markdown(f"<div style='background:#FFFFFF; border:1px solid #E2E8F0; padding:24px; border-radius:12px; margin-bottom:34px;'><h4 style='margin:0 0 10px; font-family:var(--ff-display); font-size:20px; font-style:italic;'>AI Summary</h4><p style='color:var(--text-muted); font-size:14.5px; margin:0; line-height:1.6;'>{summ}</p></div>", unsafe_allow_html=True)
 
+        # ── ⚡ FIXED CONTENT GRID WITH INLINE BADGE COCOUNTERS ──
         c1, c2, c3, c4 = st.columns([3, 3, 3, 2.5])
+        
         with c1:
-            st.markdown("<h4 style='font-family:var(--ff-display); font-style:italic; font-size:21px; margin-bottom:15px;'>Bugs</h4>", unsafe_allow_html=True)
-            st.markdown(findings_html("🪲", "fi-bug", bugs, "bug"), unsafe_allow_html=True)
+            # Renders: Bugs [X found]
+            st.markdown(f"""
+                <div class="findings-card">
+                    <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:26px; display:flex; justify-content:space-between; align-items:center;">
+                        Bugs <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:12px;">{len(bugs)} found</span>
+                    </h4>
+                    {findings_html("🪲", "fi-bug", bugs, "bug")}
+                </div>
+            """, unsafe_allow_html=True)
+            
         with c2:
-            st.markdown("<h4 style='font-family:var(--ff-display); font-style:italic; font-size:21px; margin-bottom:15px;'>Performance</h4>", unsafe_allow_html=True)
-            st.markdown(findings_html("⚡", "fi-perf", imps, "suggestion"), unsafe_allow_html=True)
+            # Renders: Performance [X suggestions]
+            st.markdown(f"""
+                <div class="findings-card">
+                    <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:26px; display:flex; justify-content:space-between; align-items:center;">
+                        Performance <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:12px;">{len(imps)} suggestions</span>
+                    </h4>
+                    {findings_html("⚡", "fi-perf", imps, "suggestion")}
+                </div>
+            """, unsafe_allow_html=True)
+            
         with c3:
-            st.markdown("<h4 style='font-family:var(--ff-display); font-style:italic; font-size:21px; margin-bottom:15px;'>Security</h4>", unsafe_allow_html=True)
-            st.markdown(findings_html("🔒", "fi-sec", secs, "security issue"), unsafe_allow_html=True)
+            # Renders: Security [X issues]
+            st.markdown(f"""
+                <div class="findings-card">
+                    <h4 style="font-family:var(--ff-editor-display); font-style:italic; font-size:26px; display:flex; justify-content:space-between; align-items:center;">
+                        Security <span class="sec-count" style="font-style:normal; font-family:var(--ff-mono); font-size:12px;">{len(secs)} issues</span>
+                    </h4>
+                    {findings_html("🔒", "fi-sec", secs, "security issue")}
+                </div>
+            """, unsafe_allow_html=True)
+            
         with c4:
             st.markdown(f"""
                 <div class="score-card" style="--pct:{pct};">
@@ -449,9 +481,11 @@ elif st.session_state.page == 'results':
                             <div class="score-num">{score}</div>
                         </div>
                     </div>
-                    <div style="font-family:'Fira Code'; font-size:11px; color:var(--text-light); margin-bottom:12px; letter-spacing:0.5px;">QUALITY METRIC</div>
+                    <div class="score-den">/ 10 quality score</div>
                     <div class="score-verdict {sv_c}">{sv_t}</div>
                 </div>
             """, unsafe_allow_html=True)
 
+    # ⚡ ADDED: Padding space block at the bottom of the webpage container layout
+    st.markdown("<div style='margin-bottom: 60px;'></div>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
