@@ -283,8 +283,8 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stAppViewBlockContain
 .footer-note{font-size:13px;color:var(--ink-4);}
 
 /* ── PAGE 2: INPUT ── */
-.input-shell{min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;background:radial-gradient(ellipse at 50% 0%,#E8F0FF 0%,var(--off) 55%);}
-.input-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px 40px 36px;box-shadow:0 8px 40px rgba(15,23,42,0.06);width:100%;max-width:500px;animation:scaleIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;}
+.input-shell{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 20px 60px;background:radial-gradient(ellipse at 50% 0%,#E8F0FF 0%,var(--off) 55%);}
+.input-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);margin-top:20px;padding:40px 40px 36px;box-shadow:0 8px 40px rgba(15,23,42,0.06);width:100%;max-width:500px;animation:scaleIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;}
 .input-h1{font-family:var(--ff-d);font-style:italic;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:-1px;margin-bottom:6px;}
 .input-sub{font-size:14px;color:var(--ink-3);line-height:1.5;margin-bottom:28px;}
 .f-label{font-family:var(--ff-m);font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);margin-bottom:7px;}
