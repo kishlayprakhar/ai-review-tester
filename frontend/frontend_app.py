@@ -341,7 +341,27 @@ elif st.session_state.page == 'input':
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Run AI Analysis", use_container_width=True):
             if not repo.strip():
-                st.warning("⚠️ Please provide a valid repository target layout.")
+                st.markdown("""
+                    <div style="background-color: #FEF3C7 !important; 
+                                border: 1px solid #FDE68A !important; 
+                                border-radius: 8px !important; 
+                                padding: 14px 20px !important; 
+                                margin: 15px 0 !important;
+                                display: flex !important;
+                                align-items: center !important;
+                                gap: 10px !important;
+                                box-shadow: 0 2px 8px rgba(217, 119, 6, 0.04) !important;">
+                        <span style="font-size: 18px !important;">⚠️</span>
+                        <span style="color: #78350F !important; 
+                                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                                     font-size: 14px !important; 
+                                     font-weight: 600 !important;
+                                     line-height: 1.4 !important;
+                                     text-align: left !important;">
+                            Please provide a valid repository target layout.
+                        </span>
+                    </div>
+                """, unsafe_allow_html=True)
             else:
                 go_to_results(repo, pr)
                 st.rerun()
