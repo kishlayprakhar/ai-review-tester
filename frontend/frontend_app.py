@@ -55,7 +55,8 @@ html, body,
 [data-testid="stHeader"] { background: transparent !important; height: 0px !important; }
 
 /* ── NATIVE NAVBAR BUTTON RESET OVERRIDES ── */
-div[data-testid="stHorizontalBlock"] .stButton > button {
+/* Added explicit exception mapping here so navbar resets ignore our capsule form class */
+div[data-testid="stHorizontalBlock"] .stButton > button:not(.premium-pill-cta button) {
     background: transparent !important;
     color: #475569 !important;
     border: none !important;
@@ -66,7 +67,7 @@ div[data-testid="stHorizontalBlock"] .stButton > button {
     transform: none !important;
     transition: color 0.15s ease !important;
 }
-div[data-testid="stHorizontalBlock"] .stButton > button:hover {
+div[data-testid="stHorizontalBlock"] .stButton > button:not(.premium-pill-cta button):hover {
     color: #0F172A !important;
     background: transparent !important;
 }
@@ -122,7 +123,6 @@ div[data-testid="stHorizontalBlock"] .stButton > button:hover {
     padding: 12px 24px !important;
 }
 </style>
-
 """, unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════
@@ -155,12 +155,9 @@ def findings_html(icon, cls, items, kind):
     return out
 
 
-
-
 # ══════════════════════════════════════════════════════
 # ROUTER — VIEW CONTROLLER ARCHITECTURE
 # ══════════════════════════════════════════════════════
-
 
 # PAGE 1: REFINED LIGHT LANDING
 if st.session_state.page == 'landing':
@@ -207,17 +204,18 @@ if st.session_state.page == 'landing':
     
     c1, c2, c3 = st.columns([1.2, 1, 1.2])
     with c2:
+        # High specificity container encapsulation layout
         st.markdown("""
-           <style>
+            <style>
             html body div[data-testid="stAppViewContainer"] .premium-pill-cta .stButton > button {
                 background-color: #FFFFFF !important;
                 background: #FFFFFF !important;
                 color: #0F172A !important;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
                 font-size: 15px !important;
-                font-weight: 600 !important;
+                font-weight: 700 !important;
                 border: 1px solid #E2E8F0 !important;
-                border-radius: 40px !important; /* Perfect sleek pill geometry */
+                border-radius: 40px !important;
                 padding: 14px 32px !important;
                 width: 100% !important;
                 display: block !important;
@@ -227,7 +225,6 @@ if st.session_state.page == 'landing':
                 visibility: visible !important;
                 transition: all 0.2s ease !important;
             }
-            
             html body div[data-testid="stAppViewContainer"] .premium-pill-cta .stButton > button:hover {
                 background-color: #F8FAFC !important;
                 border-color: #CBD5E1 !important;
@@ -238,22 +235,30 @@ if st.session_state.page == 'landing':
             </style>
             <div class="premium-pill-cta">
         """, unsafe_allow_html=True)
+        
+        # Streamlit button renders flawlessly within open class container frame
         if st.button("Connect GitHub Free", use_container_width=True):
             go_to_input()
             st.rerun()
-        st.markdown("""<p style ="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-                          font-size: 13px !important; 
-                          color: #64748B !important; 
-                          margin: 16px 0 0 0 !important; 
-                          text-align: center !important;
-                          font-weight: 400 !important;
-                          letter-spacing: -0.1px !important;">
-                    No credit card required · Setup in 60 seconds</p></div>""", unsafe_allow_html=True)
+            
+        # Closing div container applied safely after button evaluation
+        st.markdown("""
+            </div>
+            <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                      font-size: 13px !important; 
+                      color: #64748B !important; 
+                      margin: 16px 0 0 0 !important; 
+                      text-align: center !important;
+                      font-weight: 400 !important;
+                      letter-spacing: -0.1px !important;
+                      display: block !important;">
+                No credit card required · Setup in 60 seconds
+            </p>
+        """, unsafe_allow_html=True)
 
     st.markdown("<div style='margin-top: 140px; padding: 0 60px;'>", unsafe_allow_html=True)
     
     # Features Section
-
     st.markdown("""
         <div id="features" class="section-anchor">
             <h2>Features</h2>
@@ -266,7 +271,7 @@ if st.session_state.page == 'landing':
         <div style="height: 100px;"></div>
     """, unsafe_allow_html=True)
     
-    # 2. How it Works Section (Target pixel: ~760)
+    # 2. How it Works Section
     st.markdown("""
         <div id="how-it-works" class="section-anchor">
             <h2>How it Works</h2>
@@ -279,7 +284,7 @@ if st.session_state.page == 'landing':
         <div style="height: 100px;"></div>
     """, unsafe_allow_html=True)
 
-    # 3. Pricing Section (Target pixel: ~1000)
+    # 3. Pricing Section
     st.markdown("""
         <div id="pricing" class="section-anchor">
             <h2>Pricing</h2>
@@ -291,7 +296,7 @@ if st.session_state.page == 'landing':
         <div style="height: 100px;"></div>
     """, unsafe_allow_html=True)
 
-    # 4. Changelog Section (Target pixel: ~1240)
+    # 4. Changelog Section
     st.markdown("""
         <div id="changelog" class="section-anchor">
             <h2>Changelog</h2>
@@ -306,7 +311,6 @@ if st.session_state.page == 'landing':
 
 # ── ⚡ PAGE 2: FIXED HIGHER CONTRAST INPUT CARD SCREEN ──
 elif st.session_state.page == 'input':
-    # Replaced render_navbar() with static high-contrast brand bar
     st.markdown("""
         <div class="navbar-static" style="padding: 24px 60px;">
             <div class="nav-brand"><span class="nav-brand-icon">◈</span> CodeSentry</div>
