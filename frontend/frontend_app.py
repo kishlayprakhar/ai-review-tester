@@ -283,8 +283,8 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stAppViewBlockContain
 .footer-note{font-size:13px;color:var(--ink-4);}
 
 /* ── PAGE 2: INPUT ── */
-.input-shell{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 20px 60px;background:radial-gradient(ellipse at 50% 0%,#E8F0FF 0%,var(--off) 55%);}
-.input-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);margin-top:20px;padding:40px 40px 36px;box-shadow:0 8px 40px rgba(15,23,42,0.06);width:100%;max-width:500px;animation:scaleIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;}
+.input-shell{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px 20px 40px;background:radial-gradient(ellipse at 50% 0%,#E8F0FF 0%,var(--off) 55%);}
+.input-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px 40px 36px;box-shadow:0 8px 40px rgba(15,23,42,0.06);width:100%;max-width:500px;animation:scaleIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;margin-top:20px;}
 .input-h1{font-family:var(--ff-d);font-style:italic;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:-1px;margin-bottom:6px;}
 .input-sub{font-size:14px;color:var(--ink-3);line-height:1.5;margin-bottom:28px;}
 .f-label{font-family:var(--ff-m);font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);margin-bottom:7px;}
@@ -354,11 +354,14 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stAppViewBlockContain
 /* Streamlit overrides */
 .stButton>button{background:var(--ink)!important;color:white!important;border:none!important;border-radius:var(--r)!important;font-family:var(--ff-s)!important;font-weight:500!important;font-size:14px!important;padding:12px 24px!important;transition:opacity 0.15s!important;box-shadow:none!important;}
 .stButton>button:hover{opacity:0.85!important;transform:none!important;}
-.stTextInput>label,.stNumberInput>label{display:none!important;}
+.stTextInput>label,.stNumberInput>label,.stSelectbox>label{display:none!important;}
 .stTextInput input,.stNumberInput input{background:var(--white)!important;border:1px solid var(--border)!important;border-radius:var(--r)!important;color:var(--ink)!important;font-family:var(--ff-m)!important;font-size:13px!important;padding:11px 14px!important;}
 .stTextInput input:focus,.stNumberInput input:focus{border-color:#2563EB!important;box-shadow:0 0 0 3px rgba(37,99,235,0.1)!important;outline:none!important;}
 [data-testid="stMetricValue"]{color:var(--ink)!important;font-family:var(--ff-d)!important;font-style:italic!important;}
 [data-testid="stMetricLabel"]{color:var(--ink-3)!important;font-family:var(--ff-m)!important;font-size:10px!important;text-transform:uppercase!important;letter-spacing:1px!important;}
+[data-testid="stSelectboxPopoverContainer"]{background:var(--white)!important;border:1px solid var(--border)!important;}
+[data-baseweb="select"] {width:100%!important;}
+[data-testid="baseButton-secondary"]{background:var(--white)!important;border:1px solid var(--border)!important;color:var(--ink)!important;}
 div[data-testid="stSpinner"] p{font-family:var(--ff-m)!important;font-size:13px!important;color:var(--ink-3)!important;}
 </style>
 """, unsafe_allow_html=True)
@@ -581,7 +584,7 @@ elif st.session_state.page == "input":
                 </div>
             """, unsafe_allow_html=True)
         else:
-            st.info("ℹ️ GitHub OAuth not configured. Set GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET environment variables. Using demo mode.")
+               st.markdown('<div style="background:#EFF4FF;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:12px;color:#1e40af;"><span style="font-weight:600;">Demo Mode:</span> GitHub OAuth not configured. Set env vars to enable.</div>', unsafe_allow_html=True)
 
         st.markdown('<div class="input-divider" style="margin:20px 0;"></div>', unsafe_allow_html=True)
         st.markdown('<div style="text-align:center;font-family:var(--ff-m);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);margin-bottom:16px;">or continue without signing in</div>', unsafe_allow_html=True)
@@ -593,9 +596,13 @@ elif st.session_state.page == "input":
     """, unsafe_allow_html=True)
 
     st.markdown('<div class="f-label">Repository Path</div>', unsafe_allow_html=True)
-    repo = st.text_input("repo", label_visibility="collapsed",
-                          placeholder="e.g. psf/requests",
-                          value=st.session_state.repo)
+    repo = st.text_input(
+    label="Repository",
+    label_visibility="collapsed",
+    placeholder="e.g. psf/requests",
+    value=st.session_state.repo,
+    key="repo_input_field"
+)
     st.markdown('<div class="f-hint">Format: username / repository-name</div>', unsafe_allow_html=True)
 
     if repo and repo != st.session_state.repo:
@@ -608,34 +615,45 @@ elif st.session_state.page == "input":
 
     st.markdown('<div class="f-label" style="margin-top:18px;">Pull Request Number</div>', unsafe_allow_html=True)
 
-    if st.session_state.get("prs"):
-        opts = {f"#{p['number']}  {p['title'][:40]}…": p["number"] for p in st.session_state.prs}
-        sel  = st.selectbox("pr_sel", list(opts.keys()), label_visibility="collapsed")
-        st.session_state.pr = opts[sel]
-    else:
-        pr = st.number_input("pr", min_value=1, step=1,
-                              value=int(st.session_state.pr),
-                              label_visibility="collapsed")
-        st.session_state.pr = pr
+    
+    if st.session_state.prs:
+    pr_options = {f"#{p['number']}  {p['title'][:40]}…": p["number"] for p in st.session_state.prs}
+    selected_pr = st.selectbox(
+        label="Select PR",
+        options=list(pr_options.keys()),
+        label_visibility="collapsed",
+        key="pr_selector"
+    )
+    st.session_state.pr = pr_options[selected_pr]
+else:
+    pr_num = st.number_input(
+        label="PR Number",
+        min_value=1,
+        step=1,
+        value=int(st.session_state.pr),
+        label_visibility="collapsed",
+        key="pr_manual_input"
+    )
+    st.session_state.pr = int(pr_num)
 
     st.markdown('<div class="input-divider"></div>', unsafe_allow_html=True)
 
-    if st.button("Run AI Analysis →", use_container_width=True):
+col1, col2 = st.columns([3, 1])
+with col1:
+    if st.button("Run AI Analysis →", use_container_width=True, key="run_analysis_btn"):
         if not repo.strip():
             st.error("Please enter a repository path.")
         else:
-            st.session_state.repo = repo
             st.session_state.page = "results"
             st.rerun()
 
-    st.markdown("</div>", unsafe_allow_html=True)  # input-card
+with col2:
+    if st.button("← Home", use_container_width=True, key="home_btn"):
+        st.session_state.page = "landing"
+        st.rerun()
 
-    _, bc, _ = st.columns([2, 1, 2])
-    with bc:
-        st.markdown('<div style="margin-top:14px;">', unsafe_allow_html=True)
-        if st.button("← Home", use_container_width=True):
-            st.session_state.page = "landing"; st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)  # input-card
+st.markdown("</div>", unsafe_allow_html=True) 
 
     st.markdown("</div>", unsafe_allow_html=True)  # input-shell
 
@@ -683,22 +701,18 @@ elif st.session_state.page == "results":
             st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
 
-    with st.spinner("Fetching diff and invoking AI model..."):
-        result, err = get_review(repo, pr_num)
+  with st.spinner("Fetching diff and invoking AI model..."):
+    result, err = get_review(repo, pr_num)
 
-    if err == "conn":
-        st.error("🔌 Backend offline. Run: `uvicorn backend.api:app --reload`")
-    elif err:
-        st.error(f"❌ {err}")
-    else:
-        review  = (result or {}).get("review", {})
-        bugs    = review.get("bugs", [])
-        imps    = review.get("improvements", [])
-        secs    = review.get("security_issues", [])
-        score   = int(review.get("quality_score", 0))
-        summ    = review.get("summary", "")
-        sv_t, sv_c = score_meta(score)
-        pct = score * 10
+if err == "conn":
+    st.error("🔌 **Backend offline.** Run: `uvicorn backend.api:app --reload`")
+elif err:
+    st.error(f"❌ **Error:** {err}")
+elif result:
+    review  = (result or {}).get("review", {})
+    # ... render content ...
+else:
+    st.warning("No review data available.")
 
         if summ:
             st.markdown(f'<div class="sum-card"><div class="sum-lbl">AI Summary</div><div class="sum-body">{summ}</div></div>', unsafe_allow_html=True)
