@@ -662,7 +662,7 @@ st.markdown("</div>", unsafe_allow_html=True)  #input-shell
 # PAGE 3 — RESULTS
 # ══════════════════════════════════════════════════════════════════════════════
 
-elif st.session_state.page == "results":
+if st.session_state.page == "results":
     repo   = st.session_state.repo
     pr_num = st.session_state.pr
 
