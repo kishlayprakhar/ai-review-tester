@@ -653,9 +653,9 @@ with col2:
         st.rerun()
 
 st.markdown("</div>", unsafe_allow_html=True)  # input-card
-st.markdown("</div>", unsafe_allow_html=True) 
+st.markdown("</div>", unsafe_allow_html=True)  #input-shell
 
-    st.markdown("</div>", unsafe_allow_html=True)  # input-shell
+    
 
 
 # ══════════════════════════════════════════════════════════════════════════════
