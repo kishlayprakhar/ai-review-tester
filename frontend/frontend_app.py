@@ -122,9 +122,10 @@ div[data-testid="stHorizontalBlock"] .stButton > button:not(.premium-pill-cta bu
     border-radius: 8px !important;
     padding: 12px 24px !important;
 
-    /* ── FIX: STREAMLIT WARNING ALERT TEXT CONTRAST RESTORATION ── */
-div[data-testid="stNotification"] p {
-    color: #78350F !important; /* Rich amber-brown for high contrast contrast */
+  /* ── ⚡ FORCE ALL CONTRAST TEXT INSIDE WARNING ALERTS ── */
+div[data-testid="stNotification"], 
+div[data-testid="stNotification"] * {
+    color: #78350F !important; /* Rich deep amber-brown */
     font-weight: 500 !important;
 }
 }
