@@ -121,6 +121,12 @@ div[data-testid="stHorizontalBlock"] .stButton > button:not(.premium-pill-cta bu
 .stButton > button[kind="primary"], .stButton > button {
     border-radius: 8px !important;
     padding: 12px 24px !important;
+
+    /* ── FIX: STREAMLIT WARNING ALERT TEXT CONTRAST RESTORATION ── */
+div[data-testid="stNotification"] p {
+    color: #78350F !important; /* Rich amber-brown for high contrast contrast */
+    font-weight: 500 !important;
+}
 }
 </style>
 """, unsafe_allow_html=True)
