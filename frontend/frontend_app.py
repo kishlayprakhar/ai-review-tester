@@ -129,7 +129,16 @@ def findings_html(icon, cls, items, kind):
     for it in items:
         if isinstance(it, dict): desc,loc,sev = it.get("description",""),it.get("line",""),it.get("severity","")
         else: desc,loc,sev = str(it),"",""
-        out += f'<div class="finding"><div class="f-icon {cls}">{icon}</div><div class="f-body"><div class="f-desc">{desc}</div><div class="f-foot">{sev_badge(sev) if sev else ""}{f\'<span class="f-loc">◍ {loc}</span>\' if loc else ""}</div></div></div>'
+        badge_html = sev_badge(sev) if sev else ""
+        loc_html = f'<span class="f-loc">◍ {loc}</span>' if loc else ""
+        
+        out += f"""<div class="finding">
+                    <div class="f-icon {cls}">{icon}</div>
+                    <div class="f-body">
+                        <div class="f-desc">{desc}</div>
+                        <div class="f-foot">{badge_html}{loc_html}</div>
+                    </div>
+                  </div>"""
     return out
 
 # ══════════════════════════════════════════════════════════════════════════════
