@@ -681,38 +681,28 @@ elif st.session_state.page == "results":
 
     st.markdown('<div class="results-wrap">', unsafe_allow_html=True)
 
-    cb, _ = st.columns([2, 8])
-    with cb:
-        st.markdown("""
-            <style>
-            .back-wrap .stButton>button{
-                background:var(--white)!important;color:var(--ink-2)!important;
-                border:1px solid var(--border)!important;font-size:13px!important;
-                padding:9px 18px!important;font-weight:500!important;box-shadow:none!important;
-            }
-            .back-wrap .stButton>button:hover{border-color:var(--border-2)!important;opacity:1!important;}
-            </style>
-            <div class="back-wrap">
-        """, unsafe_allow_html=True)
-        if st.button("← New Analysis", use_container_width=True):
-            st.session_state.page   = "input"
-            st.session_state.result = None
-            st.session_state.prs    = []
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
+    if st.button("← New Analysis", use_container_width=False, key="new_analysis_btn"):
+        st.session_state.page = "input"
+        st.session_state.result = None
+        st.session_state.prs = []
+        st.rerun()
 
-  with st.spinner("Fetching diff and invoking AI model..."):
-    result, err = get_review(repo, pr_num)
+    with st.spinner("Fetching diff and invoking AI model..."):
+        result, err = get_review(repo, pr_num)
 
-if err == "conn":
-    st.error("🔌 **Backend offline.** Run: `uvicorn backend.api:app --reload`")
-elif err:
-    st.error(f"❌ **Error:** {err}")
-elif result:
-    review  = (result or {}).get("review", {})
-    # ... render content ...
-else:
-    st.warning("No review data available.")
+    if err == "conn":
+        st.error("🔌 **Backend offline.** Run: `uvicorn backend.api:app --reload`")
+    elif err:
+        st.error(f"❌ **Error:** {err}")
+    elif result:
+        review  = (result or {}).get("review", {})
+        bugs    = review.get("bugs", [])
+        imps    = review.get("improvements", [])
+        secs    = review.get("security_issues", [])
+        score   = int(review.get("quality_score", 0))
+        summ    = review.get("summary", "")
+        sv_t, sv_c = score_meta(score)
+        pct = score * 10
 
         if summ:
             st.markdown(f'<div class="sum-card"><div class="sum-lbl">AI Summary</div><div class="sum-body">{summ}</div></div>', unsafe_allow_html=True)
@@ -743,5 +733,7 @@ else:
                     <div class="score-v {sv_c}">{sv_t}</div>
                 </div>
             """, unsafe_allow_html=True)
+    else:
+        st.warning("No review data available.")
 
     st.markdown("</div>", unsafe_allow_html=True)
