@@ -617,12 +617,12 @@ elif st.session_state.page == "input":
 
     
     if st.session_state.prs:
-    pr_options = {f"#{p['number']}  {p['title'][:40]}…": p["number"] for p in st.session_state.prs}
-    selected_pr = st.selectbox(
-        label="Select PR",
-        options=list(pr_options.keys()),
-        label_visibility="collapsed",
-        key="pr_selector"
+        pr_options = {f"#{p['number']}  {p['title'][:40]}…": p["number"] for p in st.session_state.prs}
+        selected_pr = st.selectbox(
+            label="Select PR",
+            options=list(pr_options.keys()),
+            label_visibility="collapsed",
+            key="pr_selector"
     )
     st.session_state.pr = pr_options[selected_pr]
 else:
