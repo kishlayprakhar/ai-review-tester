@@ -28,7 +28,7 @@ st.set_page_config(
 GITHUB_CLIENT_ID     = os.environ.get("GITHUB_CLIENT_ID", "")
 GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "")
 REDIRECT_URI         = "http://localhost:8501"
-API_URL              = "http://localhost:8000"
+API_URL              = "https://ai-reviewer-backend-az5k.onrender.com"
 
 # ── Session state init ─────────────────────────────────────────────────────────
 DEFAULTS = {
