@@ -283,13 +283,23 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stAppViewBlockContain
 .footer-note{font-size:13px;color:var(--ink-4);}
 
 /* ── PAGE 2: INPUT ── */
-.input-shell{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px 20px 40px;background:radial-gradient(ellipse at 50% 0%,#E8F0FF 0%,var(--off) 55%);}
-.input-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px 40px 36px;box-shadow:0 8px 40px rgba(15,23,42,0.06);width:100%;max-width:500px;animation:scaleIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;margin-top:20px;}
-.input-h1{font-family:var(--ff-d);font-style:italic;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:-1px;margin-bottom:6px;}
-.input-sub{font-size:14px;color:var(--ink-3);line-height:1.5;margin-bottom:28px;}
-.f-label{font-family:var(--ff-m);font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);margin-bottom:7px;}
-.f-hint{font-size:12px;color:var(--ink-4);margin-top:5px;}
-.input-divider{height:1px;background:var(--border);margin:22px 0;}
+.input-shell{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 20px 3px 20px;background:radial-gradient(ellipse at 50% 0%,#E8F0FF 0%,var(--off) 55%);}
+    .input-card{
+    background:transparent;
+    border:none;
+    padding:0 40px;
+    box-shadow:none;
+    width:100%;
+    max-width:500px;
+    animation:scaleIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
+    margin:0 auto;
+}
+
+.input-h1{font-family:var(--ff-d);font-style:italic;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:-1px;margin:0 40px 6px 10px;padding:0;}
+.input-sub{font-size:14px;color:var(--ink-3);line-height:1.5;margin-bottom:28px;padding:0 10px;}
+.f-label{font-family:var(--ff-m);font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);margin-bottom:7px;padding:0 10px;}
+.f-hint{font-size:12px;color:var(--ink-4);margin-top:5px;padding:0 10px;}
+.input-divider{height:1px;background:var(--border);margin:22px 40px;padding:0;}
 .auth-status{display:flex;align-items:center;gap:10px;background:var(--green-lt);border:1px solid #BBF7D0;border-radius:var(--r);padding:12px 16px;margin-bottom:20px;}
 .auth-avatar{width:28px;height:28px;border-radius:50%;border:1px solid #BBF7D0;}
 .auth-name{font-family:var(--ff-m);font-size:12px;font-weight:500;color:#166534;}
@@ -303,13 +313,13 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stAppViewBlockContain
 .tag-date{background:var(--off);color:var(--ink-3);border:1px solid var(--border);}
 .tag-gh{background:var(--ink);color:var(--white);text-decoration:none;display:inline-block;margin-left:8px;}
 
-.results-wrap{padding:36px 52px 64px;background:var(--off);}
-.sum-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:24px;position:relative;overflow:hidden;animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) forwards;}
+.results-wrap{padding:8px 45px 64px 52px;background:var(--off);max-width:1400px;margin:0 auto;}
+.sum-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin:0 auto 24px auto;;position:relative;overflow:hidden;animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) forwards;}
 .sum-card::after{content:'"';font-family:var(--ff-d);font-size:120px;color:rgba(15,23,42,0.03);position:absolute;top:-20px;right:16px;line-height:1;pointer-events:none;}
 .sum-lbl{font-family:var(--ff-m);font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink-4);margin-bottom:10px;}
 .sum-body{font-size:15px;color:var(--ink-2);line-height:1.72;font-style:italic;}
 
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;max-width:1200px;margin-left:auto;margin-right:auto;}
 .metric{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px 18px;position:relative;overflow:hidden;transition:transform 0.18s,box-shadow 0.18s;}
 .metric:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,23,42,0.06);}
 .metric::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;}
@@ -322,9 +332,16 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stAppViewBlockContain
 .mv-sc{color:#2563EB;}.mv-bu{color:#059669;}.mv-pe{color:#D97706;}.mv-se{color:#E11D48;}
 .metric-hint{font-size:11px;color:var(--ink-4);margin-top:6px;font-family:var(--ff-m);}
 .rule{height:1px;background:var(--border);margin:28px 0;}
-.sec-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.sec-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:0 20px;}
 .sec-title{font-family:var(--ff-d);font-style:italic;font-size:22px;font-weight:300;color:var(--ink);letter-spacing:-0.3px;}
 .sec-badge{font-family:var(--ff-m);font-size:10px;color:var(--ink-3);background:var(--white);border:1px solid var(--border);padding:3px 10px;border-radius:20px;}
+.findings-wrapper{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--r-lg);
+    padding:20px;
+    margin-bottom:20px;
+}
 .finding{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:9px;display:flex;gap:12px;align-items:flex-start;transition:border-color 0.12s,box-shadow 0.12s;}
 .finding:hover{border-color:var(--border-2);box-shadow:0 4px 12px rgba(15,23,42,0.04);}
 .f-icon{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:1px;}
@@ -352,9 +369,13 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stAppViewBlockContain
 .sv-p{background:#FFF1F2;color:#BE123C;border:1px solid #FECDD3;}
 
 /* Streamlit overrides */
-.stButton>button{background:var(--ink)!important;color:white!important;border:none!important;border-radius:var(--r)!important;font-family:var(--ff-s)!important;font-weight:500!important;font-size:14px!important;padding:12px 24px!important;transition:opacity 0.15s!important;box-shadow:none!important;}
+.stButton {
+    margin:0!important;
+    padding:0!important;
+}
+.stButton>button{background:var(--ink)!important;color:white!important;border:none!important;border-radius:var(--r)!important;font-family:var(--ff-s)!important;font-weight:500!important;font-size:14px!important;padding:12px 24px!important;transition:opacity 0.15s!important;box-shadow:none!important;margin:0!important;margin-bottom:20px!important;}
 .stButton>button:hover{opacity:0.85!important;transform:none!important;}
-.stTextInput>label,.stNumberInput>label,.stSelectbox>label{display:none!important;}
+.stTextInput>label,.stNumberInput>label,.stSelectbox>label{display:none!important;padding:0 10px!important;}
 .stTextInput input,.stNumberInput input{background:var(--white)!important;border:1px solid var(--border)!important;border-radius:var(--r)!important;color:var(--ink)!important;font-family:var(--ff-m)!important;font-size:13px!important;padding:11px 14px!important;}
 .stTextInput input:focus,.stNumberInput input:focus{border-color:#2563EB!important;box-shadow:0 0 0 3px rgba(37,99,235,0.1)!important;outline:none!important;}
 [data-testid="stMetricValue"]{color:var(--ink)!important;font-family:var(--ff-d)!important;font-style:italic!important;}
@@ -584,12 +605,12 @@ elif st.session_state.page == "input":
                 </div>
             """, unsafe_allow_html=True)
         else:
-               st.markdown('<div style="background:#EFF4FF;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:12px;color:#1e40af;"><span style="font-weight:600;">Demo Mode:</span> GitHub OAuth not configured. Set env vars to enable.</div>', unsafe_allow_html=True)
+            st.markdown('<div style="background:#EFF4FF;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:12px;color:#1e40af;"><span style="font-weight:600;">Demo Mode:</span> GitHub OAuth not configured. Set env vars to enable.</div>', unsafe_allow_html=True)
 
         st.markdown('<div class="input-divider" style="margin:20px 0;"></div>', unsafe_allow_html=True)
         st.markdown('<div style="text-align:center;font-family:var(--ff-m);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);margin-bottom:16px;">or continue without signing in</div>', unsafe_allow_html=True)
 
-    # Repo input (always shown)
+    # Repo input
     st.markdown("""
         <div class="input-h1" style="margin-top:8px;">New Analysis</div>
         <div class="input-sub">Enter a GitHub repository and pull request number.</div>
@@ -597,17 +618,17 @@ elif st.session_state.page == "input":
 
     st.markdown('<div class="f-label">Repository Path</div>', unsafe_allow_html=True)
     repo = st.text_input(
-    label="Repository",
-    label_visibility="collapsed",
-    placeholder="e.g. psf/requests",
-    value=st.session_state.repo,
-    key="repo_input_field"
-)
+        label="Repository",
+        label_visibility="collapsed",
+        placeholder="e.g. psf/requests",
+        value=st.session_state.repo,
+        key="repo_input_field"
+    )
     st.markdown('<div class="f-hint">Format: username / repository-name</div>', unsafe_allow_html=True)
 
     if repo and repo != st.session_state.repo:
         st.session_state.repo = repo
-        st.session_state.prs  = []
+        st.session_state.prs = []
 
     if repo and not st.session_state.get("prs"):
         with st.spinner("Loading open PRs..."):
@@ -615,45 +636,47 @@ elif st.session_state.page == "input":
 
     st.markdown('<div class="f-label" style="margin-top:18px;">Pull Request Number</div>', unsafe_allow_html=True)
 
-    
     if st.session_state.prs:
-        pr_options = {f"#{p['number']}  {p['title'][:40]}…": p["number"] for p in st.session_state.prs}
+        pr_options = {f"#{p['number']}  {p['title'][:40]}...": p["number"] for p in st.session_state.prs}
         selected_pr = st.selectbox(
             label="Select PR",
             options=list(pr_options.keys()),
             label_visibility="collapsed",
             key="pr_selector"
-    )
-    st.session_state.pr = pr_options[selected_pr]
-else:
-    pr_num = st.number_input(
-        label="PR Number",
-        min_value=1,
-        step=1,
-        value=int(st.session_state.pr),
-        label_visibility="collapsed",
-        key="pr_manual_input"
-    )
-    st.session_state.pr = int(pr_num)
+        )
+        st.session_state.pr = pr_options[selected_pr]
+    else:
+        pr_num = st.number_input(
+            label="PR Number",
+            min_value=1,
+            step=1,
+            value=int(st.session_state.pr),
+            label_visibility="collapsed",
+            key="pr_manual_input"
+        )
+        st.session_state.pr = int(pr_num)
 
     st.markdown('<div class="input-divider"></div>', unsafe_allow_html=True)
 
-col1, col2 = st.columns([3, 1])
-with col1:
-    if st.button("Run AI Analysis →", use_container_width=True, key="run_analysis_btn"):
-        if not repo.strip():
-            st.error("Please enter a repository path.")
-        else:
-            st.session_state.page = "results"
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        if st.button("Run AI Analysis →", use_container_width=True, key="run_analysis_btn"):
+            if not repo.strip():
+                st.error("Please enter a repository path.")
+            else:
+                st.session_state.page = "results"
+                st.rerun()
+
+    with col2:
+        if st.button("← Home", use_container_width=True, key="home_btn"):
+            st.session_state.page = "landing"
             st.rerun()
 
-with col2:
-    if st.button("← Home", use_container_width=True, key="home_btn"):
-        st.session_state.page = "landing"
-        st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)  # input-card
+    st.markdown("</div>", unsafe_allow_html=True)  # input-shell
 
-st.markdown("</div>", unsafe_allow_html=True)  # input-card
-st.markdown("</div>", unsafe_allow_html=True)  #input-shell
+
+
 
     
 
@@ -662,7 +685,7 @@ st.markdown("</div>", unsafe_allow_html=True)  #input-shell
 # PAGE 3 — RESULTS
 # ══════════════════════════════════════════════════════════════════════════════
 
-if st.session_state.page == "results":
+elif st.session_state.page == "results":
     repo   = st.session_state.repo
     pr_num = st.session_state.pr
 
