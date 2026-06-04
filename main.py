@@ -106,9 +106,9 @@ def analyze_repo(repo_name):
  
  
  
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
-    analyze_repo("psf/requests")
+    #analyze_repo("psf/requests")
  
 
 
