@@ -29,17 +29,29 @@ ENDPOINTS:
 import sys
 import os
 
-# Make sure Python finds all backend files
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.abspath(os.path.join(current_dir, ".."))
+
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
 
 from fastapi             import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic            import BaseModel
 from typing              import Optional
 
-from github_utils        import get_pull_requests, get_pr_diff
-from claude_utils        import get_code_review
-from database            import save_review, get_review, get_all_reviews, delete_review
+# Clean absolute directory imports
+try:
+    import github_utils
+    import claude_utils
+    import database
+except ModuleNotFoundError:
+    # Safe fallback if files are nested in an explicit backend layout folder scope
+    from backend import github_utils
+    from backend import claude_utils
+    from backend import database
 from github import Github
 
 # ── FastAPI App ───────────────────────────────────────────────────────────────
