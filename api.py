@@ -53,12 +53,6 @@ app = FastAPI(
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 gh_client = Github(GITHUB_TOKEN)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Allows any frontend (like your React port 3000) to connect
-    allow_methods=["*"],  # Allows all HTTP methods (GET, POST, OPTIONS, etc.)
-    allow_headers=["*"],  # Allows all custom HTTP headers
-)
 
 # ── CORS Middleware ───────────────────────────────────────────────────────────
 # Allows frontend (React/HTML on port 3000) to talk to this server (port 8000)
