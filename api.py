@@ -294,22 +294,7 @@ def delete_review_by_id(review_id: int):
         "review_id" : review_id
     }
 
-@app.post("/review")
-def review_pr(request: ReviewRequest):
-    try:
-        diff = get_pr_diff(request.repo, request.pr_number)
 
-        if not diff:
-            raise HTTPException(
-                status_code=404,
-                detail=f"PR #{request.pr_number} not found in {request.repo}"
-            )
-
-        review = get_code_review(diff)
-        return review
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 
 
